@@ -686,24 +686,19 @@
                                 <i class="fas fa-exclamation-circle mr-2"></i> Oops! Something went wrong. Please try again later.
                             </div>
                             
-                            <form id="contact-form">
+                            <form id="contact-form" class="max-w-2xl mx-auto">
                                 <div class="form-control">
-                                    <input type="text" id="name" placeholder=" " required>
+                                    <input type="text" name="name" id="name" required placeholder=" " />
                                     <label for="name">Your Name</label>
                                 </div>
                                 
                                 <div class="form-control">
-                                    <input type="email" id="email" placeholder=" " required>
+                                    <input type="email" name="email" id="email" required placeholder=" " />
                                     <label for="email">Your Email</label>
                                 </div>
                                 
                                 <div class="form-control">
-                                    <input type="text" id="subject" placeholder=" ">
-                                    <label for="subject">Subject</label>
-                                </div>
-                                
-                                <div class="form-control">
-                                    <textarea id="message" rows="5" placeholder=" " required></textarea>
+                                    <textarea name="message" id="message" rows="5" required placeholder=" "></textarea>
                                     <label for="message">Your Message</label>
                                 </div>
                                 
@@ -711,6 +706,14 @@
                                     Send Message <i class="fas fa-paper-plane ml-2"></i>
                                 </button>
                             </form>
+                            <div id="form-success" class="fixed inset-0 flex items-center justify-center z-50" style="display:none;">
+                              <div class="bg-white rounded-xl shadow-2xl p-8 flex flex-col items-center animate-bounce-in">
+                                <svg class="w-16 h-16 text-green-500 mb-4 animate-pop" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 12l2 2l4-4" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                                <h2 class="text-2xl font-bold mb-2 text-green-600">Message Sent!</h2>
+                                <p class="text-gray-600 mb-4">Thank you for contacting me. I'll get back to you soon.</p>
+                                <button onclick="document.getElementById('form-success').style.display='none'" class="btn btn-primary">Close</button>
+                              </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -805,5 +808,48 @@
       
         document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
     </script>
+</body>
+</html>
+<style>
+@keyframes bounce-in {
+  0% { transform: scale(0.7); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
+  80% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+.animate-bounce-in {
+  animation: bounce-in 0.7s cubic-bezier(.68,-0.55,.27,1.55) both;
+}
+@keyframes pop {
+  0% { transform: scale(0); }
+  80% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+.animate-pop {
+  animation: pop 0.5s cubic-bezier(.68,-0.55,.27,1.55) both;
+}
+</style>
+<script>
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+  try {
+    const res = await fetch('https://formspree.io/f/xzzrqebr', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      document.getElementById('form-success').style.display = 'flex';
+      form.reset();
+    } else {
+      alert('There was an error. Please try again.');
+    }
+  } catch {
+    alert('There was an error. Please try again.');
+  }
+});
+</script>
 </body>
 </html>
