@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,7 +48,7 @@
 
         .neumorph {
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3),
-                        -5px -5px 10px rgba(255, 255, 255, 0.03);
+                -5px -5px 10px rgba(255, 255, 255, 0.03);
             border-radius: 16px;
         }
 
@@ -62,9 +63,11 @@
             0% {
                 background-position: 0% 50%;
             }
+
             50% {
                 background-position: 100% 50%;
             }
+
             100% {
                 background-position: 0% 50%;
             }
@@ -76,7 +79,7 @@
             transform: translateY(20px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-          
+
         .fade-in.animate {
             opacity: 1;
             transform: translateY(0);
@@ -217,10 +220,10 @@
             pointer-events: none;
         }
 
-        .form-control input:focus + label,
-        .form-control textarea:focus + label,
-        .form-control input:not(:placeholder-shown) + label,
-        .form-control textarea:not(:placeholder-shown) + label {
+        .form-control input:focus+label,
+        .form-control textarea:focus+label,
+        .form-control input:not(:placeholder-shown)+label,
+        .form-control textarea:not(:placeholder-shown)+label {
             top: -0.75rem;
             left: 0.75rem;
             background-color: var(--card-bg);
@@ -365,15 +368,16 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar py-4 px-6 md:px-12">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-gradient">Umar Khan</a>
+            <a href="#" class="text-2xl font-bold text-gradient">Portfolio</a>
             <div class="hidden md:flex space-x-8">
                 <a href="#about" class="text-gray-300 hover:text-white transition-colors">About</a>
                 <a href="#projects" class="text-gray-300 hover:text-white transition-colors">Projects</a>
-                 <!-- REMOVE THIS LINE -->
+                <!-- REMOVE THIS LINE -->
                 <a href="#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a>
             </div>
             <button class="md:hidden text-gray-300 focus:outline-none" id="mobile-menu-btn">
@@ -391,7 +395,7 @@
         <div class="flex flex-col space-y-4 mt-10">
             <a href="#about" class="text-gray-300 hover:text-white text-xl py-2">About</a>
             <a href="#projects" class="text-gray-300 hover:text-white text-xl py-2">Projects</a>
-           <!-- REMOVE THIS LINE -->
+            <!-- REMOVE THIS LINE -->
             <a href="#contact" class="text-gray-300 hover:text-white text-xl py-2">Contact</a>
         </div>
         <div class="mt-10">
@@ -402,12 +406,7 @@
                 <a href="#" class="text-gray-400 hover:text-white text-xl">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="#" class="text-gray-400 hover:text-white text-xl">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#" class="text-gray-400 hover:text-white text-xl">
-                    <i class="fas fa-envelope"></i>
-                </a>
+
             </div>
         </div>
     </div>
@@ -418,17 +417,20 @@
             <div class="flex flex-col md:flex-row items-center justify-between">
                 <div class="md:w-1/2 mb-10 md:mb-0">
                     <div class="fade-in">
-                        <span class="inline-block bg-purple-900 bg-opacity-30 text-purple-300 px-4 py-2 rounded-full text-sm mb-6">
+                        <span
+                            class="inline-block bg-purple-900 bg-opacity-30 text-purple-300 px-4 py-2 rounded-full text-sm mb-6">
                             <i class="fas fa-code mr-2"></i> Full-Stack Developer
                         </span>
-                        <h1 class="text-4xl md:text-6xl font-bold mb-6">Hi, I'm <span class="text-gradient">Mohammad Umar Wajid Khan</span></h1>
+                        <h1 class="text-4xl md:text-6xl font-bold mb-6">Hi, I'm <span class="text-gradient">Mohammad
+                                Umar Wajid Khan</span></h1>
                         <p class="text-xl text-gray-300 mb-8">
                             I’m a developer, a creator, and a constant learner.
                             I love turning ideas into digital experiences, blending logic with design.
                             From coding to poetry, I build with both mind and heart.
                         </p>
                         <div class="flex flex-wrap space-x-4">
-                            <a href="#projects" class="btn btn-primary mb-4">View my work <i class="fas fa-arrow-right ml-2"></i></a>
+                            <a href="#projects" class="btn btn-primary mb-4">View my work <i
+                                    class="fas fa-arrow-right ml-2"></i></a>
                             <a href="#contact" class="btn btn-outline mb-4">Contact me</a>
                         </div>
                     </div>
@@ -458,24 +460,25 @@
                 </div>
                 <div class="md:w-[50%] md:ml-auto md:mr-16 fade-in stagger-delay-2">
                     <div class="neumorph glass p-8 rounded-3xl">
-                        <div class="w-64 h-64 md:w-80 md:h-80 mx-auto bg-gradient-to-tr from-purple-600 to-blue-500 rounded-full flex items-center justify-center overflow-hidden">
+                        <div
+                            class="w-64 h-64 md:w-80 md:h-80 mx-auto bg-gradient-to-tr from-purple-600 to-blue-500 rounded-full flex items-center justify-center overflow-hidden">
                             <!-- FontAwesome icon को हटाकर इमेज टैग जोड़ें -->
                             <img src="khan.jpg" alt="Mohammad Umar Khan" class="w-full h-full object-cover">
                         </div>
-                      <div class="text-center mt-6">
-                        <div class="flex justify-center space-x-6">
-                          <a href="#" class="text-gray-400 hover:text-white text-xl transition-colors">
-                            <i class="fab fa-github"></i>
-                          </a>
-                          <a href="#" class="text-gray-400 hover:text-white text-xl transition-colors">
-                            <i class="fab fa-linkedin"></i>
-                          </a>
+                        <div class="text-center mt-6">
+                            <div class="flex justify-center space-x-6">
+                                <a href="#" class="text-gray-400 hover:text-white text-xl transition-colors">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-white text-xl transition-colors">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
 
+                            </div>
                         </div>
-                      </div>
                     </div>
-                  </div>
-                  
+                </div>
+
     </section>
 
     <!-- About Me Section -->
@@ -486,18 +489,25 @@
                     <h2 class="text-3xl md:text-4xl font-bold mb-6">About Me</h2>
                     <div class="h-1 w-20 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto rounded-full"></div>
                 </div>
-                
+
                 <div class="neumorph glass p-8 rounded-2xl fade-in stagger-delay-1">
                     <p class="text-lg mb-6 text-gray-300">
-                        Hey, I’m Mohammad Umar Khan — a developer, a digital thinker, and someone who’s constantly exploring new ways to turn imagination into reality.
+                        Hey, I’m Mohammad Umar Khan — a developer, a digital thinker, and someone who’s constantly
+                        exploring new ways to turn imagination into reality.
                     </p>
-                    
+
                     <p class="text-lg mb-6 text-gray-300">
-                        I like to build things that aren’t just functional, but meaningful. Whether it’s a portfolio, a blog, a cool new web app, or a futuristic UI — I try to make things that feel like me. Tech, for me, is more than just code. It’s my way of expressing ideas, solving problems, and sometimes… just creating beauty out of logic.
+                        I like to build things that aren’t just functional, but meaningful. Whether it’s a portfolio, a
+                        blog, a cool new web app, or a futuristic UI — I try to make things that feel like me. Tech, for
+                        me, is more than just code. It’s my way of expressing ideas, solving problems, and sometimes…
+                        just creating beauty out of logic.
                     </p>
 
                     <p class="text-lg mb-10 text-gray-300">
-                        I’m currently a student — but not the kind that waits around for a classroom. I believe in learning by doing. I break things, fix them, and then break them again just to understand them better. I enjoy experimenting with design, animations, and smooth user experiences — especially the kind that make people go, “Whoa, this looks awesome.”
+                        I’m currently a student — but not the kind that waits around for a classroom. I believe in
+                        learning by doing. I break things, fix them, and then break them again just to understand them
+                        better. I enjoy experimenting with design, animations, and smooth user experiences — especially
+                        the kind that make people go, “Whoa, this looks awesome.”
                     </p>
 
                     <div class="mt-10">
@@ -506,17 +516,25 @@
                             <div class="timeline-item fade-in">
                                 <h4 class="font-bold text-white">HTML & CSS Bootcamp</h4>
                                 <p class="text-purple-300">2021 - Present</p>
-                                <p class="text-gray-400 mt-2">Enrolled in an HTML & CSS bootcamp, and went deeper into frontend development. Learned how to build responsive layouts, style elements beautifully, and create user-friendly web pages from scratch.</p>
+                                <p class="text-gray-400 mt-2">Enrolled in an HTML & CSS bootcamp, and went deeper into
+                                    frontend development. Learned how to build responsive layouts, style elements
+                                    beautifully, and create user-friendly web pages from scratch.</p>
                             </div>
                             <div class="timeline-item fade-in">
                                 <h4 class="font-bold text-white">Python & Programming Basics</h4>
                                 <p class="text-purple-300">2019</p>
-                                <p class="text-gray-400 mt-2">Began learning Python — my first real programming language. Wrote small scripts, learned the logic of loops, functions, and conditions. This was the foundation that shaped how I think about code and automation.</p>
+                                <p class="text-gray-400 mt-2">Began learning Python — my first real programming
+                                    language. Wrote small scripts, learned the logic of loops, functions, and
+                                    conditions. This was the foundation that shaped how I think about code and
+                                    automation.</p>
                             </div>
                             <div class="timeline-item fade-in">
                                 <h4 class="font-bold text-white">First Website, First Spark</h4>
                                 <p class="text-purple-300">2017 - 2022</p>
-                                <p class="text-gray-400 mt-2">Discovered Blogger and built my first website using custom code. I learned by downloading online PDFs and experimenting with HTML. Wrote my first redirect script and created a basic menu bar. That small success gave me the confidence to explore further.</p>
+                                <p class="text-gray-400 mt-2">Discovered Blogger and built my first website using custom
+                                    code. I learned by downloading online PDFs and experimenting with HTML. Wrote my
+                                    first redirect script and created a basic menu bar. That small success gave me the
+                                    confidence to explore further.</p>
                             </div>
                         </div>
                     </div>
@@ -530,7 +548,8 @@
         <div class="container mx-auto px-6 md:px-12">
             <div class="text-center mb-16 fade-in">
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">Featured Projects</h2>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto">A selection of my recent work showcasing my skills and experience in web development.</p>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">A selection of my recent work showcasing my skills
+                    and experience in web development.</p>
                 <div class="h-1 w-20 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mt-6 rounded-full"></div>
             </div>
 
@@ -549,7 +568,8 @@
                             <span class="tech-tag">MongoDB</span>
                             <span class="tech-tag">Stripe API</span>
                         </div>
-                        <p class="text-gray-400 mb-6">A full-featured e-commerce platform with product management, cart functionality, user authentication, and Stripe payment integration.</p>
+                        <p class="text-gray-400 mb-6">A full-featured e-commerce platform with product management, cart
+                            functionality, user authentication, and Stripe payment integration.</p>
                         <div class="flex space-x-4">
                             <a href="#" class="btn btn-primary btn-sm">Live Demo</a>
                             <a href="#" class="btn btn-outline btn-sm">
@@ -573,7 +593,8 @@
                             <span class="tech-tag">Express.js</span>
                             <span class="tech-tag">Socket.io</span>
                         </div>
-                        <p class="text-gray-400 mb-6">A collaborative task management application with real-time updates, drag-and-drop interface, and team collaboration features.</p>
+                        <p class="text-gray-400 mb-6">A collaborative task management application with real-time
+                            updates, drag-and-drop interface, and team collaboration features.</p>
                         <div class="flex space-x-4">
                             <a href="#" class="btn btn-primary btn-sm">Live Demo</a>
                             <a href="#" class="btn btn-outline btn-sm">
@@ -597,7 +618,8 @@
                             <span class="tech-tag">Socket.io</span>
                             <span class="tech-tag">Firebase</span>
                         </div>
-                        <p class="text-gray-400 mb-6">A real-time messaging platform with private chats, group channels, file sharing, and message reactions.</p>
+                        <p class="text-gray-400 mb-6">A real-time messaging platform with private chats, group channels,
+                            file sharing, and message reactions.</p>
                         <div class="flex space-x-4">
                             <a href="#" class="btn btn-primary btn-sm">Live Demo</a>
                             <a href="#" class="btn btn-outline btn-sm">
@@ -614,14 +636,15 @@
         </div>
     </section>
 
-   
+
 
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-gradient-to-b from-gray-800 to-gray-900">
         <div class="container mx-auto px-6 md:px-12">
             <div class="text-center mb-16 fade-in">
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">Get In Touch</h2>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Have a project in mind or just want to chat? Feel free to reach out!</p>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Have a project in mind or just want to chat? Feel
+                    free to reach out!</p>
                 <div class="h-1 w-20 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mt-6 rounded-full"></div>
             </div>
 
@@ -630,17 +653,18 @@
                     <div class="md:col-span-2 fade-in stagger-delay-1">
                         <div class="neumorph glass rounded-xl p-8">
                             <h3 class="text-2xl font-bold mb-6 text-gradient">Contact Info</h3>
-                            
+
                             <div class="flex items-start mb-6">
                                 <div class="text-purple-500 mr-4">
                                     <i class="fas fa-envelope text-xl"></i>
                                 </div>
                                 <div>
                                     <h4 class="text-lg font-semibold text-white">Email</h4>
-                                    <p class="text-gray-400"><a href="mailto:ablogumar@gmail.com">ablogumar@gmail.com</a></p>
+                                    <p class="text-gray-400"><a
+                                            href="mailto:ablogumar@gmail.com">ablogumar@gmail.com</a></p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-start mb-6">
                                 <div class="text-purple-500 mr-4">
                                     <i class="fas fa-map-marker-alt text-xl"></i>
@@ -650,7 +674,7 @@
                                     <p class="text-gray-400">India</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-start mb-10">
                                 <div class="text-purple-500 mr-4">
                                     <i class="fas fa-clock text-xl"></i>
@@ -660,11 +684,12 @@
                                     <p class="text-gray-400">Full Time</p>
                                 </div>
                             </div>
-                            
+
                             <h4 class="text-lg font-semibold text-white mb-4">Connect with me</h4>
                             <div class="flex space-x-6">
-                                <a href="https://github.com/yourusername" class="text-gray-400 hover:text-white text-xl transition-colors">
-                                   <i class="fab fa-github"></i>
+                                <a href="https://github.com/yourusername"
+                                    class="text-gray-400 hover:text-white text-xl transition-colors">
+                                    <i class="fab fa-github"></i>
                                 </a>
                                 <a href="#" class="text-gray-400 hover:text-white text-xl transition-colors">
                                     <i class="fab fa-linkedin"></i>
@@ -673,46 +698,57 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="md:col-span-3 fade-in stagger-delay-2">
                         <div class="neumorph glass rounded-xl p-8">
                             <h3 class="text-2xl font-bold mb-6 text-gradient">Send a Message</h3>
-                            
+
                             <div class="form-success" id="form-success">
-                                <i class="fas fa-check-circle mr-2"></i> Your message has been sent successfully! I'll get back to you soon.
+                                <i class="fas fa-check-circle mr-2"></i> Your message has been sent successfully! I'll
+                                get back to you soon.
                             </div>
-                            
+
                             <div class="form-error" id="form-error">
-                                <i class="fas fa-exclamation-circle mr-2"></i> Oops! Something went wrong. Please try again later.
+                                <i class="fas fa-exclamation-circle mr-2"></i> Oops! Something went wrong. Please try
+                                again later.
                             </div>
-                            
+
                             <form id="contact-form" class="max-w-2xl mx-auto">
                                 <div class="form-control">
-                                    <input type="text" name="name" id="name" required placeholder=" " />
+                                    <input type="text" name="name" id="name" required placeholder=" " pattern="[A-Za-z\s]{2,40}" title="Names are allowed only with letters and spaces (2-40 characters)" />
                                     <label for="name">Your Name</label>
                                 </div>
-                                
+
                                 <div class="form-control">
                                     <input type="email" name="email" id="email" required placeholder=" " />
                                     <label for="email">Your Email</label>
                                 </div>
-                                
+
                                 <div class="form-control">
                                     <textarea name="message" id="message" rows="5" required placeholder=" "></textarea>
                                     <label for="message">Your Message</label>
                                 </div>
-                                
+
                                 <button type="submit" class="btn btn-primary w-full">
                                     Send Message <i class="fas fa-paper-plane ml-2"></i>
                                 </button>
                             </form>
-                            <div id="form-success" class="fixed inset-0 flex items-center justify-center z-50" style="display:none;">
-                              <div class="bg-white rounded-xl shadow-2xl p-8 flex flex-col items-center animate-bounce-in">
-                                <svg class="w-16 h-16 text-green-500 mb-4 animate-pop" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 12l2 2l4-4" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-                                <h2 class="text-2xl font-bold mb-2 text-green-600">Message Sent!</h2>
-                                <p class="text-gray-600 mb-4">Thank you for contacting me. I'll get back to you soon.</p>
-                                <button onclick="document.getElementById('form-success').style.display='none'" class="btn btn-primary">Close</button>
-                              </div>
+                            <div id="form-success" class="fixed inset-0 flex items-center justify-center z-50"
+                                style="display:none;">
+                                <div
+                                    class="bg-white rounded-xl shadow-2xl p-8 flex flex-col items-center animate-bounce-in">
+                                    <svg class="w-16 h-16 text-green-500 mb-4 animate-pop" fill="none"
+                                        stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"
+                                            fill="none" />
+                                        <path d="M8 12l2 2l4-4" stroke="currentColor" stroke-width="2" fill="none" />
+                                    </svg>
+                                    <h2 class="text-2xl font-bold mb-2 text-green-600">Message Sent!</h2>
+                                    <p class="text-gray-600 mb-4">Thank you for contacting me. I'll get back to you
+                                        soon.</p>
+                                    <button onclick="document.getElementById('form-success').style.display='none'"
+                                        class="btn btn-primary">Close</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -729,14 +765,14 @@
                     <a href="#" class="text-2xl font-bold text-gradient">Mohammad Umar Khan</a>
                     <p class="text-gray-400 mt-2"> Developer</p>
                 </div>
-                
+
                 <div class="flex space-x-8 mb-6 md:mb-0">
                     <a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a>
                     <a href="#projects" class="text-gray-400 hover:text-white transition-colors">Projects</a>
-                   <!-- REMOVE THIS LINE -->
+                    
                     <a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a>
                 </div>
-                
+
                 <div class="flex space-x-6">
                     <a href="#" class="text-gray-400 hover:text-white text-xl transition-colors">
                         <i class="fab fa-github"></i>
@@ -748,7 +784,7 @@
                     </a>
                 </div>
             </div>
-            
+
             <div class="border-t border-gray-800 mt-10 pt-10 text-center">
                 <p class="text-gray-500">&copy; 2025 Mohammad Umar Khan. All rights reserved.</p>
             </div>
@@ -795,61 +831,97 @@
 
         // IntersectionObserver for repeated scroll-triggered animations
         const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('animate');
-            } else {
-              entry.target.classList.remove('animate');
-            }
-          });
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                } else {
+                    entry.target.classList.remove('animate');
+                }
+            });
         }, {
-          threshold: 0.1
+            threshold: 0.1
         });
-      
+
         document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
     </script>
 </body>
+
 </html>
 <style>
-@keyframes bounce-in {
-  0% { transform: scale(0.7); opacity: 0; }
-  60% { transform: scale(1.1); opacity: 1; }
-  80% { transform: scale(0.95); }
-  100% { transform: scale(1); }
-}
-.animate-bounce-in {
-  animation: bounce-in 0.7s cubic-bezier(.68,-0.55,.27,1.55) both;
-}
-@keyframes pop {
-  0% { transform: scale(0); }
-  80% { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
-.animate-pop {
-  animation: pop 0.5s cubic-bezier(.68,-0.55,.27,1.55) both;
-}
+    @keyframes bounce-in {
+        0% {
+            transform: scale(0.7);
+            opacity: 0;
+        }
+
+        60% {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        80% {
+            transform: scale(0.95);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .animate-bounce-in {
+        animation: bounce-in 0.7s cubic-bezier(.68, -0.55, .27, 1.55) both;
+    }
+
+    @keyframes pop {
+        0% {
+            transform: scale(0);
+        }
+
+        80% {
+            transform: scale(1.2);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .animate-pop {
+        animation: pop 0.5s cubic-bezier(.68, -0.55, .27, 1.55) both;
+    }
 </style>
 <script>
-document.getElementById('contact-form').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const form = e.target;
-  const data = new FormData(form);
-  try {
-    const res = await fetch('https://formspree.io/f/xzzrqebr', {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
+    document.getElementById('contact-form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        
+        // नाम वैलिडेशन
+        const nameInput = document.getElementById('name');
+        const namePattern = /^[A-Za-z\s]{2,40}$/;
+        
+        if (!namePattern.test(nameInput.value)) {
+            alert('कृपया एक वैध नाम दर्ज करें (केवल अक्षर और स्पेस, 2-40 वर्ण)');
+            return;
+        }
+        
+        const form = e.target;
+        const data = new FormData(form);
+        try {
+            const res = await fetch('https://formspree.io/f/xzzrqebr', {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+            if (res.ok) {
+                document.getElementById('form-success').style.display = 'flex';
+                form.reset();
+            } else {
+                alert('There was an error. Please try again.');
+            }
+        } catch {
+            alert('There was an error. Please try again.');
+        }
     });
-    if (res.ok) {
-      document.getElementById('form-success').style.display = 'flex';
-      form.reset();
-    } else {
-      alert('There was an error. Please try again.');
-    }
-  } catch {
-    alert('There was an error. Please try again.');
-  }
-});
 </script>
 </body>
+
 </html>
