@@ -972,8 +972,13 @@
                 headers: { 'Accept': 'application/json' }
             });
             if (res.ok) {
-                document.getElementById('form-success').style.display = 'flex';
+                const successMessage = document.getElementById('form-success');
+                successMessage.style.display = 'flex';
                 form.reset();
+                // 3 second baad message automatically hide ho jayega
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 3000);
             } else {
                 alert('There was an error. Please try again.');
             }
