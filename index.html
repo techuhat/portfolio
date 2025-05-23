@@ -52,6 +52,43 @@
             border-radius: 16px;
         }
 
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 9999;
+            background: linear-gradient(90deg, #8B5CF6, #10B981);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            font-size: 2rem;
+            cursor: pointer;
+            animation: bounce 1.2s infinite;
+            transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+        }
+
+        #backToTop:hover {
+            background: linear-gradient(90deg, #10B981, #8B5CF6);
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.3);
+            transform: scale(1.12) rotate(-12deg);
+        }
+
         /* Animated gradient background */
         .gradient-bg {
             background: linear-gradient(-45deg, #1E293B, #0F172A, #312E81, #4F46E5);
@@ -464,7 +501,7 @@
                         <div
                             class="w-64 h-64 md:w-80 md:h-80 mx-auto bg-gradient-to-tr from-purple-600 to-blue-500 rounded-full flex items-center justify-center overflow-hidden">
                             <!-- FontAwesome icon को हटाकर इमेज टैग जोड़ें -->
-                            <img src="images/khan.jpg" alt="Mohammad Umar Khan" class="w-full h-full object-cover">
+                            <img src="/images/khan.jpg" alt="Mohammad Umar Khan" class="w-full h-full object-cover">
                         </div>
                         <div class="text-center mt-6">
                             <div class="flex justify-center space-x-6">
@@ -561,7 +598,7 @@
                 <div class="project-card neumorph glass rounded-xl overflow-hidden fade-in stagger-delay-1">
                     <div class="h-56 bg-gradient-to-br from-purple-800 to-blue-900 flex items-center justify-center">
                         <!-- <i class="fas fa-shopping-cart text-7xl text-white opacity-30"></i> -->
-                        <img src="images/naasamajh.png" alt="E-commerce Platform" class="w-full h-full object-cover">
+                        <img src="/images/naasamajh.png" alt="E-commerce Platform" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6 min-h-[300px] flex flex-col">
                         <h3 class="text-xl font-bold mb-2">Naasamajh Ishq</h3>
@@ -852,6 +889,20 @@
         });
 
         document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+    </script>
+    <button id="backToTop" title="Back to Top">&uarr;</button>
+    <script>
+        window.addEventListener('scroll', function () {
+            const btn = document.getElementById('backToTop');
+            if (window.scrollY > 200) {
+                btn.style.display = 'block';
+            } else {
+                btn.style.display = 'none';
+            }
+        });
+        document.getElementById('backToTop').onclick = function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
     </script>
 </body>
 
