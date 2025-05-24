@@ -682,127 +682,190 @@
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-gradient-to-b from-gray-800 to-gray-900">
         <div class="container mx-auto px-6 md:px-12">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">Get In Touch</h2>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto">Have a project in mind or just want to chat? Feel free to reach out!</p>
-                <div class="h-1 w-20 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mt-6 rounded-full"></div>
-            </div>
-    
-            <div class="max-w-4xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
-                    <div class="md:col-span-2 fade-in stagger-delay-1">
-                        <div class="neumorph glass rounded-xl p-8">
-                            <h3 class="text-2xl font-bold mb-6 text-gradient">Contact Info</h3>
-    
-                            <div class="flex items-start mb-6">
-                                <div class="text-purple-500 mr-4">
-                                    <i class="fas fa-envelope text-xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-semibold text-white">Email</h4>
-                                    <p class="text-gray-400"><a href="mailto:ablogumar@gmail.com">ablogumar@gmail.com</a></p>
-                                </div>
-                            </div>
-    
-                            <div class="flex items-start mb-6">
-                                <div class="text-purple-500 mr-4">
-                                    <i class="fas fa-map-marker-alt text-xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-semibold text-white">Location</h4>
-                                    <p class="text-gray-400">India</p>
-                                </div>
-                            </div>
-    
-                            <div class="flex items-start mb-10">
-                                <div class="text-purple-500 mr-4">
-                                    <i class="fas fa-clock text-xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-semibold text-white">Working Hours</h4>
-                                    <p class="text-gray-400">Full Time</p>
-                                </div>
-                            </div>
-    
-                            <h4 class="text-lg font-semibold text-white mb-4">Connect with me</h4>
-                            <div class="flex space-x-6">
-                                <a href="https://github.com/techuhat" class="text-gray-400 hover:text-white text-xl transition-colors">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="https://www.linkedin.com/in/mohdkhanumar/" class="text-gray-400 hover:text-white text-xl transition-colors">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                            </div>
-                        </div>
+          <div class="text-center mb-16 fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Get In Touch</h2>
+            <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+              Have a project in mind or just want to chat? Feel free to reach out!
+            </p>
+            <div class="h-1 w-20 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mt-6 rounded-full"></div>
+          </div>
+      
+          <div class="max-w-4xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+              <div class="md:col-span-2 fade-in stagger-delay-1">
+                <div class="neumorph glass rounded-xl p-8">
+                  <h3 class="text-2xl font-bold mb-6 text-gradient">Contact Info</h3>
+      
+                  <div class="flex items-start mb-6">
+                    <div class="text-purple-500 mr-4">
+                      <i class="fas fa-envelope text-xl"></i>
                     </div>
-    
-                    <div class="md:col-span-3 fade-in stagger-delay-2">
-                        <div class="neumorph glass rounded-xl p-8">
-                            <h3 class="text-2xl font-bold mb-6 text-gradient">Send a Message</h3>
-    
-                            <div class="form-success" id="form-success">
-                                <i class="fas fa-check-circle mr-2"></i> Your message has been sent successfully! I'll get back to you soon.
-                            </div>
-    
-                            <div class="form-error" id="form-error">
-                                <i class="fas fa-exclamation-circle mr-2"></i> Oops! Something went wrong. Please try again later.
-                            </div>
-    
-                            <form id="contact-form" action="https://formspree.io/f/xzzrqebr" method="POST" onsubmit="return validateRecaptcha()" class="max-w-2xl mx-auto">
-                                <div class="form-control">
-                                    <input type="text" name="name" id="name" required placeholder=" " pattern="[A-Za-z\s]{2,40}" title="Names are allowed only with letters and spaces (2-40 characters)" />
-                                    <label for="name">Full Name</label>
-                                </div>
-    
-                                <div class="form-control">
-                                    <input type="email" name="email" id="email" required placeholder=" " />
-                                    <label for="email">Your Email</label>
-                                </div>
-    
-                                <div class="form-control">
-                                    <textarea name="message" id="message" rows="5" required placeholder=" "></textarea>
-                                    <label for="message">Your Message</label>
-                                </div>
-    
-                                <!-- reCAPTCHA widget -->
-                                <div class="g-recaptcha mb-4" data-sitekey="6Lelt0crAAAAAKGHrS8UvgF3rTWzo1jvO1fFLe-b"></div>
-    
-                                <button type="submit" class="btn btn-primary w-full">
-                                    Send Message <i class="fas fa-paper-plane ml-2"></i>
-                                </button>
-                            </form>
-    
-                            <div id="form-success" class="fixed inset-0 flex items-center justify-center z-50" style="display:none;">
-                                <div class="bg-white rounded-xl shadow-2xl p-8 flex flex-col items-center animate-bounce-in">
-                                    <svg class="w-16 h-16 text-green-500 mb-4 animate-pop" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" />
-                                        <path d="M8 12l2 2l4-4" stroke="currentColor" stroke-width="2" fill="none" />
-                                    </svg>
-                                    <h2 class="text-2xl font-bold mb-2 text-green-600">Message Sent!</h2>
-                                    <p class="text-gray-600 mb-4">Thank you for contacting me. I'll get back to you soon.</p>
-                                    <button onclick="document.getElementById('form-success').style.display='none'" class="btn btn-primary">Close</button>
-                                </div>
-                            </div>
-                        </div>
+                    <div>
+                      <h4 class="text-lg font-semibold text-white">Email</h4>
+                      <p class="text-gray-400"><a href="mailto:ablogumar@gmail.com">ablogumar@gmail.com</a></p>
                     </div>
+                  </div>
+      
+                  <div class="flex items-start mb-6">
+                    <div class="text-purple-500 mr-4">
+                      <i class="fas fa-map-marker-alt text-xl"></i>
+                    </div>
+                    <div>
+                      <h4 class="text-lg font-semibold text-white">Location</h4>
+                      <p class="text-gray-400">India</p>
+                    </div>
+                  </div>
+      
+                  <div class="flex items-start mb-10">
+                    <div class="text-purple-500 mr-4">
+                      <i class="fas fa-clock text-xl"></i>
+                    </div>
+                    <div>
+                      <h4 class="text-lg font-semibold text-white">Working Hours</h4>
+                      <p class="text-gray-400">Full Time</p>
+                    </div>
+                  </div>
+      
+                  <h4 class="text-lg font-semibold text-white mb-4">Connect with me</h4>
+                  <div class="flex space-x-6">
+                    <a href="https://github.com/techuhat" class="text-gray-400 hover:text-white text-xl transition-colors">
+                      <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mohdkhanumar/" class="text-gray-400 hover:text-white text-xl transition-colors">
+                      <i class="fab fa-linkedin"></i>
+                    </a>
+                  </div>
                 </div>
+              </div>
+      
+              <div class="md:col-span-3 fade-in stagger-delay-2">
+                <div class="neumorph glass rounded-xl p-8">
+                  <h3 class="text-2xl font-bold mb-6 text-gradient">Send a Message</h3>
+      
+                  <div class="form-success" id="form-success" style="display:none;">
+                    <i class="fas fa-check-circle mr-2"></i> Your message has been sent successfully! I'll get back to you soon.
+                  </div>
+      
+                  <div class="form-error" id="form-error" style="display:none;">
+                    <i class="fas fa-exclamation-circle mr-2"></i> Oops! Something went wrong. Please try again later.
+                  </div>
+      
+                  <form
+                    id="contact-form"
+                    action="https://formspree.io/f/xzzrqebr"
+                    method="POST"
+                    onsubmit="return validateForm()"
+                    class="max-w-2xl mx-auto"
+                  >
+                    <div class="form-control">
+                      <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        required
+                        placeholder=" "
+                        pattern="[A-Za-z\s]{2,40}"
+                        title="Names are allowed only with letters and spaces (2-40 characters)"
+                      />
+                      <label for="name">Full Name</label>
+                    </div>
+      
+                    <div class="form-control">
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        required
+                        placeholder=" "
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                        title="Please enter a valid email address"
+                      />
+                      <label for="email">Your Email</label>
+                    </div>
+      
+                    <div class="form-control">
+                      <textarea name="message" id="message" rows="5" required placeholder=" "></textarea>
+                      <label for="message">Your Message</label>
+                    </div>
+      
+                    <!-- reCAPTCHA widget -->
+                    <div class="g-recaptcha" data-sitekey="6Lelt0crAAAAAKGHrS8UvgF3rTWzo1jvO1fFLe-b" data-callback="enableSubmit"></div>
+      
+                    <button type="submit" class="btn btn-primary w-full" id="submitBtn" disabled>
+                      Send Message <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                  </form>
+      
+                  <div
+                    id="form-success"
+                    class="fixed inset-0 flex items-center justify-center z-50"
+                    style="display:none;"
+                  >
+                    <div
+                      class="bg-white rounded-xl shadow-2xl p-8 flex flex-col items-center animate-bounce-in"
+                    >
+                      <svg
+                        class="w-16 h-16 text-green-500 mb-4 animate-pop"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" />
+                        <path d="M8 12l2 2l4-4" stroke="currentColor" stroke-width="2" fill="none" />
+                      </svg>
+                      <h2 class="text-2xl font-bold mb-2 text-green-600">Message Sent!</h2>
+                      <p class="text-gray-600 mb-4">Thank you for contacting me. I'll get back to you soon.</p>
+                      <button
+                        onclick="document.getElementById('form-success').style.display='none'"
+                        class="btn btn-primary"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
-    
-    <!-- reCAPTCHA Validation Script -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script>
-        function validateRecaptcha() {
-            const response = grecaptcha.getResponse();
-            if (!response) {
-                alert("Please complete the CAPTCHA before submitting.");
-                return false;
-            }
-            return true;
+      </section>
+      
+      <!-- Include Google reCAPTCHA script -->
+      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+      
+      <script>
+        // Enable submit button only after captcha solved
+        function enableSubmit() {
+          document.getElementById('submitBtn').disabled = false;
         }
-    </script>
-    
+      
+        // Validate email domain and recaptcha before submit
+        function validateEmailDomain(email) {
+          const allowedDomains = ['gmail.com', 'yahoo.com', 'outlook.com'];
+          const domain = email.split('@')[1].toLowerCase();
+          return allowedDomains.includes(domain);
+        }
+      
+        function validateForm() {
+          const email = document.getElementById('email').value.trim();
+          if (!validateEmailDomain(email)) {
+            alert(
+              'Please use a valid email provider like gmail.com, yahoo.com, or outlook.com'
+            );
+            return false;
+          }
+      
+          const recaptchaResponse = grecaptcha.getResponse();
+          if (recaptchaResponse.length === 0) {
+            alert('Please complete the CAPTCHA before submitting.');
+            return false;
+          }
+      
+          return true; // submit form
+        }
+      </script>
+      
 
     <!-- Footer -->
     <footer class="py-10 bg-gray-900">
