@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutureTech News</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --primary-color: #00f7ff;
+            --secondary-color: #4d2fff;
+            --accent-color: #ff3366;
+            --tertiary-color: #00ff88;
+            --text-color: #e0e0ff;
+            --bg-color: #050b2e;
+            --card-bg: rgba(8, 14, 44, 0.7);
+            --glow-color: rgba(0, 247, 255, 0.6);
+            --success-color: #00ff88;
+            --error-color: #ff3366;
+            --header-height: 80px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 20% 35%, rgba(77, 47, 255, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 75% 44%, rgba(0, 247, 255, 0.1) 0%, transparent 50%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: rgba(5, 11, 46, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 247, 255, 0.3);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-icon:before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s;
+        }
+        
+        nav li a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+            transition: width 0.3s;
+        }
+        
+        nav li a:hover::after {
+            width: 100%;
+        }
+        
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 5px 15px;
+            border: 1px solid rgba(0, 247, 255, 0.3);
+        }
+        
+        .search-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-color);
+            font-family: 'Rajdhani', sans-serif;
+            padding: 5px;
+            width: 200px;
+        }
+        
+        .search-input::placeholder {
+            color: rgba(224, 224, 255, 0.6);
+        }
+        
+        .search-icon {
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 500px;
+            margin-top: var(--header-height);
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .slider-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: flex-end;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+        
+        .slide-content {
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(0deg, rgba(5, 11, 46, 0.9) 0%, rgba(5, 11, 46, 0.7) 50%, transparent 100%);
+        }
+        
+        .slide-tag {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .slide-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .slide-description {
+            color: var(--text-color);
+            margin-bottom: 15px;
+            max-width: 70%;
+        }
+        
+        .read-more {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .read-more:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .slider-nav {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+        
+        .slider-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .slider-btn:hover {
+            background: var(--primary-color);
+            color: var(--bg-color);
+        }
+        
+        .slider-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            z-index: 10;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .dot.active {
+            background: var(--primary-color);
+            box-shadow: 0 0 10px var(--glow-color);
+        }
+        
+        /* News grid section */
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 247, 255, 0.3);
+            text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+        }
+        
+        .blinking-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 20px;
+            background-color: var(--primary-color);
+            margin-left: 5px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .news-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary-color);
+        }
+        
+        .news-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .news-content {
+            padding: 20px;
+        }
+        
+        .news-tag {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .news-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            color: white;
+        }
+        
+        .news-excerpt {
+            color: var(--text-color);
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: rgba(224, 224, 255, 0.7);
+        }
+        
+        .card-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        /* Featured section */
+        .featured-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .featured-main {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .featured-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+        
+        .featured-content {
+            padding: 30px;
+        }
+        
+        .featured-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 26px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            color: white;
+        }
+        
+        .featured-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .sidebar-item {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            height: 110px;
+            transition: all 0.3s;
+        }
+        
+        .sidebar-item:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .sidebar-img {
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+        }
+        
+        .sidebar-content {
+            padding: 10px 15px;
+            flex: 1;
+        }
+        
+        .sidebar-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            line-height: 1.4;
+            color: white;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        /* Newsletter section */
+        .newsletter {
+            background: linear-gradient(135deg, rgba(77, 47, 255, 0.3), rgba(0, 247, 255, 0.3));
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .newsletter:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent,
+                transparent,
+                transparent,
+                rgba(0, 247, 255, 0.1),
+                transparent,
+                transparent,
+                transparent
+            );
+            transform: rotate(30deg);
+            animation: glassShine 10s infinite linear;
+            z-index: 0;
+        }
+        
+        @keyframes glassShine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(30deg); }
+        }
+        
+        .newsletter-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .newsletter-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .newsletter-text {
+            color: var(--text-color);
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 10px;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            padding: 12px 20px;
+            color: white;
+            font-family: 'Rajdhani', sans-serif;
+            outline: none;
+        }
+        
+        .newsletter-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .newsletter-btn {
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+            border: none;
+            border-radius: 30px;
+            padding: 12px 25px;
+            color: white;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .newsletter-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Categories section */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        
+        .category-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            transition: all 0.3s;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 11, 46, 0.7);
+            z-index: 1;
+        }
+        
+        .category-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            color: white;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 0 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(5, 11, 46, 0.95);
+            padding: 50px 0 20px;
+            border-top: 1px solid rgba(0, 247, 255, 0.3);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+        
+        .footer-about {
+            color: var(--text-color);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icon {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--primary-color);
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background: var(--primary-color);
+            color: var(--bg-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .footer-heading {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary-color);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+        
+        .footer-contact p {
+            color: var(--text-color);
+            margin-bottom: 10px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-icon {
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(224, 224, 255, 0.7);
+            font-size: 14px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .featured-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-sidebar {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .sidebar-item {
+                width: calc(50% - 10px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            nav {
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
+                display: none;
+            }
+            
+            nav ul {
+                justify-content: space-between;
+            }
+            
+            .hero {
+                height: 400px;
+            }
+            
+            .slide-title {
+                font-size: 24px;
+            }
+            
+            .slide-description {
+                max-width: 100%;
+            }
+            
+            .featured-section {
+                gap: 20px;
+            }
+            
+            .sidebar-item {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo-text {
+                font-size: 20px;
+            }
+            
+            .search-bar {
+                width: 100%;
+            }
+            
+            .slide-content {
+                padding: 20px;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .categories {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .newsletter {
+                padding: 30px 20px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+        
+        /* Animated bg */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .bg-particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: floatParticle linear infinite;
+        }
+        
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+        
+        /* Hover effects */
+        .glow-hover {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glow-hover::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 247, 255, 0.4) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+        
+        .glow-hover:hover::after {
+            opacity: 1;
+        }
+        
+        /* Menu toggle for mobile */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+        
+        .burger-line {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav.active {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation" id="bg-animation"></div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    <div class="logo-text">FutureTech</div>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Search news...">
+                    <span class="search-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                </div>
+                
+                <div class="menu-toggle">
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="news.html">Latest News</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="hero">
+            <div class="slider-container">
+                <div class="slide active" style="background-image: url('/api/placeholder/1200/500');">
+                    <div class="slide-content">
+                        <span class="slide-tag">Breaking News</span>
+                        <h2 class="slide-title">Quantum Computing Breakthrough: 1000 Qubit Processor Unveiled</h2>
+                        <p class="slide-description">Scientists have achieved a major milestone in quantum computing with a stable 1000 qubit processor that operates at room temperature.</p>
+                        <a href="#" class="read-more">Read Full Story</a>
+                    </div>
+                </div>
+                
+                <div class="slide" style="background-image: url('/api/placeholder/1200/500');">
+                    <div class="slide-content">
+                        <span class="slide-tag">AI Technology</span>
+                        <h2 class="slide-title">Neural Interfaces Connect Human Brain to Cloud Computing</h2>
+                        <p class="slide-description">The first successful human trials of a direct neural interface allowing seamless integration with cloud-based AI have been announced.</p>
+                        <a href="#" class="read-more">Read Full Story</a>
+                    </div>
+                </div>
+                
+                <div class="slide" style="background-image: url('/api/placeholder/1200/500');">
+                    <div class="slide-content">
+                        <span class="slide-tag">Space Exploration</span>
+                        <h2 class="slide-title">First Permanent Mars Colony Now Self-Sufficient</h2>
+                        <p class="slide-description">After five years of development, the Mars Pioneer Colony has achieved complete resource independence from Earth supply missions.</p>
+                        <a href="#" class="read-more">Read Full Story</a>
+                 </div>
+                
+                <div class="slider-nav">
+                    <div class="slider-btn prev-slide">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 18l-6-6 6-6"></path>
+                        </svg>
+                    </div>
+                    <div class="slider-btn next-slide">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="slider-dots">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2 class="section-title">Latest News <span class="blinking-cursor"></span></h2>
+            <div class="news-grid">
+                <div class="news-card glow-hover">
+                    <img src="/api/placeholder/400/200" alt="News Image" class="news-img">
+                    <div class="news-content">
+                        <span class="news-tag">Biotechnology</span>
+                        <h3 class="news-title">CRISPR 2.0 Allows DNA Editing with Zero Off-Target Effects</h3>
+                        <p class="news-excerpt">The next generation of gene editing technology promises unparalleled precision and safety for human applications.</p>
+                        <div class="news-meta">
+                            <span>May 10, 2025</span>
+                            <span>5 min read</span>
+                        </div>
+                    </div>
+                    <a href="#" class="card-link"></a>
+                </div>
+                
+                <div class="news-card glow-hover">
+                    <img src="/api/placeholder/400/200" alt="News Image" class="news-img">
+                    <div class="news-content">
+                        <span class="news-tag">Virtual Reality</span>
+                        <h3 class="news-title">Full Sensory VR Headset Uses Neural Feedback Technology</h3>
+                        <p class="news-excerpt">New immersive tech creates touch, smell and taste experiences in virtual environments without invasive implants.</p>
+                        <div class="news-meta">
+                            <span>May 8, 2025</span>
+                            <span>4 min read</span>
+                        </div>
+                    </div>
+                    <a href="#" class="card-link"></a>
+                </div>
+                
+                <div class="news-card glow-hover">
+                    <img src="/api/placeholder/400/200" alt="News Image" class="news-img">
+                    <div class="news-content">
+                        <span class="news-tag">Renewable Energy</span>
+                        <h3 class="news-title">Atmospheric Water Harvesting Powers Self-Sustaining Buildings</h3>
+                        <p class="news-excerpt">New system extracts water from air with 90% efficiency while generating electricity through temperature differentials.</p>
+                        <div class="news-meta">
+                            <span>May 7, 2025</span>
+                            <span>6 min read</span>
+                        </div>
+                    </div>
+                    <a href="#" class="card-link"></a>
+                </div>
+                
+                <div class="news-card glow-hover">
+                    <img src="/api/placeholder/400/200" alt="News Image" class="news-img">
+                    <div class="news-content">
+                        <span class="news-tag">Robotics</span>
+                        <h3 class="news-title">Soft Robotics Breakthrough: Artificial Muscles Match Human Strength</h3>
+                        <p class="news-excerpt">Self-healing polymer actuators provide unprecedented power-to-weight ratio with biomimetic movement patterns.</p>
+                        <div class="news-meta">
+                            <span>May 5, 2025</span>
+                            <span>3 min read</span>
+                        </div>
+                    </div>
+                    <a href="#" class="card-link"></a>
+                </div>
+                
+                <div class="news-card glow-hover">
+                    <img src="/api/placeholder/400/200" alt="News Image" class="news-img">
+                    <div class="news-content">
+                        <span class="news-tag">Transportation</span>
+                        <h3 class="news-title">Vacuum Tube Transport Network Expands to Connect Major Cities</h3>
+                        <p class="news-excerpt">The high-speed transportation system now links 15 metropolitan areas with travel times under 30 minutes.</p>
+                        <div class="news-meta">
+                            <span>May 3, 2025</span>
+                            <span>5 min read</span>
+                        </div>
+                    </div>
+                    <a href="#" class="card-link"></a>
+                </div>
+                
+                <div class="news-card glow-hover">
+                    <img src="/api/placeholder/400/200" alt="News Image" class="news-img">
+                    <div class="news-content">
+                        <span class="news-tag">Artificial Intelligence</span>
+                        <h3 class="news-title">AI Medical Diagnostic System Outperforms Human Doctors in Global Trial</h3>
+                        <p class="news-excerpt">The system demonstrated 99.8% accuracy across 50 different medical conditions in a blind test against specialists.</p>
+                        <div class="news-meta">
+                            <span>May 1, 2025</span>
+                            <span>7 min read</span>
+                        </div>
+                    </div>
+                    <a href="#" class="card-link"></a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="featured-section">
+            <div class="featured-main glow-hover">
+                <img src="/api/placeholder/800/350" alt="Featured Image" class="featured-img">
+                <div class="featured-content">
+                    <span class="news-tag">Featured Story</span>
+                    <h2 class="featured-title">Fusion Energy Now Powers 10% of Global Electricity Grid</h2>
+                    <p class="news-excerpt">The International Fusion Consortium announces that fusion reactors have hit a major deployment milestone a decade ahead of projections, providing clean, limitless energy to millions.</p>
+                    <div class="news-meta">
+                        <span>May 12, 2025</span>
+                        <span>10 min read</span>
+                    </div>
+                </div>
+                <a href="#" class="card-link"></a>
+            </div>
+            
+            <div class="featured-sidebar">
+                <div class="sidebar-item">
+                    <img src="/api/placeholder/200/200" alt="Sidebar Image" class="sidebar-img">
+                    <div class="sidebar-content">
+                        <span class="news-tag">Neuroscience</span>
+                        <h3 class="sidebar-title">Memory Enhancement Implant Receives Medical Approval</h3>
+                        <div class="news-meta">
+                            <span>May 11, 2025</span>
+                        </div>
+                    </div>
+                    <a href="#" class="card-link"></a>
+                </div>
+                
+                <div class="sidebar-item">
+                    <img src="/api/placeholder/200/200" alt="Sidebar Image" class="sidebar-img">
+                    <div class="sidebar-content">
+                        <span class="news-tag">Nanotechnology</span>
+                        <h3 class="sidebar-title">Self-Assembling Nanobots Repair Environmental Damage</h3>
+                        <div class="news-meta">
+                            <span>May 9, 2025</span>
+                        </div>
+                    </div>
+                    <a href="#" class="card-link"></a>
+                </div>
+                
+                <div class="sidebar-item">
+                    <img src="/api/placeholder/200/200" alt="Sidebar Image" class="sidebar-img">
+                    <div class="sidebar-content">
+                        <span class="news-tag">Space</span>
+                        <h3 class="sidebar-title">Lunar Mining Operation Ships First Materials to Earth</h3>
+                        <div class="news-meta">
+                            <span>May 6, 2025</span>
+                        </div>
+                    </div>
+                    <a href="#" class="card-link"></a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="newsletter">
+            <div class="newsletter-content">
+                <h2 class="newsletter-title">Stay Updated with Future Technologies</h2>
+                <p class="newsletter-text">Subscribe to our newsletter and get the latest tech news directly to your inbox. Be the first to know about breakthroughs that will shape our tomorrow.</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Your email address">
+                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                </form>
+            </div>
+        </section>
+        
+        <section>
+            <h2 class="section-title">Explore Categories <span class="blinking-cursor"></span></h2>
+            <div class="categories">
+                <div class="category-card" style="background-image: url('/api/placeholder/400/300');">
+                    <h3 class="category-name">Artificial Intelligence</h3>
+                </div>
+                
+                <div class="category-card" style="background-image: url('/api/placeholder/400/300');">
+                    <h3 class="category-name">Quantum Computing</h3>
+                </div>
+                
+                <div class="category-card" style="background-image: url('/api/placeholder/400/300');">
+                    <h3 class="category-name">Biotechnology</h3>
+                </div>
+                
+                <div class="category-card" style="background-image: url('/api/placeholder/400/300');">
+                    <h3 class="category-name">Space Technology</h3>
+                </div>
+                
+                <div class="category-card" style="background-image: url('/api/placeholder/400/300');">
+                    <h3 class="category-name">Renewable Energy</h3>
+                </div>
+                
+                <div class="category-card" style="background-image: url('/api/placeholder/400/300');">
+                    <h3 class="category-name">Nanotechnology</h3>
+                </div>
+                
+                <div class="category-card" style="background-image: url('/api/placeholder/400/300');">
+                    <h3 class="category-name">Virtual Reality</h3>
+                </div>
+                
+                <div class="category-card" style="background-image: url('/api/placeholder/400/300');">
+                    <h3 class="category-name">Robotics</h3>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="logo footer-logo">
+                        <div class="logo-icon"></div>
+                        <div class="logo-text">FutureTech</div>
+                    </div>
+                    <p class="footer-about">FutureTech News is your premier source for the latest breakthroughs in science and technology. We bring you cutting-edge developments from around the world, keeping you informed about innovations that shape our future.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="footer-heading">Categories</h3>
+                    <ul>
+                        <li><a href="#">Artificial Intelligence</a></li>
+                        <li><a href="#">Quantum Computing</a></li>
+                        <li><a href="#">Biotechnology</a></li>
+                        <li><a href="#">Space Technology</a></li>
+                        <li><a href="#">Renewable Energy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3 class="footer-heading">Contact Us</h3>
+                    <p>
+                        <span class="contact-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </span>
+                        123 Tech Avenue, Innovation City
+                    </p>
+                    <p>
+                        <span class="contact-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                        </span>
+                        +1 (555) 123-4567
+                    </p>
+                    <p>
+                        <span class="contact-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </span>
+                        info@futuretech.news
+                    </p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 FutureTech News. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Background animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const bgAnimation = document.getElementById('bg-animation');
+            const numParticles = 50;
+            
+            for (let i = 0; i < numParticles; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('bg-particle');
+                
+                // Random properties
+                const size = Math.random() * 5 + 2;
+                const posX = Math.random() * 100;
+                const duration = Math.random() * 50 + 30;
+                const delay = Math.random() * 30;
+                const color = Math.random() > 0.5 ? 'rgba(0, 247, 255, 0.3)' : 'rgba(77, 47, 255, 0.3)';
+                
+                // Apply styles
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.bottom = '-20px';
+                particle.style.backgroundColor = color;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                bgAnimation.appendChild(particle);
+            }
+            
+            // Slider functionality
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            const prevBtn = document.querySelector('.prev-slide');
+            const nextBtn = document.querySelector('.next-slide');
+            let currentSlide = 0;
+            
+            function showSlide(index) {
+                // Hide all slides and remove active class from dots
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                // Show current slide and add active class to current dot
+                slides[index].classList.add('active');
+                dots[index].classList.add('active');
+                currentSlide = index;
+            }
+            
+            function nextSlide() {
+                let next = currentSlide + 1;
+                if (next >= slides.length) next = 0;
+                showSlide(next);
+            }
+            
+            function prevSlide() {
+                let prev = currentSlide - 1;
+                if (prev < 0) prev = slides.length - 1;
+                showSlide(prev);
+            }
+            
+            // Event listeners
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => showSlide(index));
+            });
+            
+            // Auto slide
+            setInterval(nextSlide, 5000);
+            
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+            
+            menuToggle.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+            
+            // Type animation for section titles
+            const titles = document.querySelectorAll('.section-title');
+            titles.forEach(title => {
+                const cursor = title.querySelector('.blinking-cursor');
+                const text = title.textContent;
+                title.textContent = '';
+                title.appendChild(cursor);
+                
+                let i = 0;
+                const typeInterval = setInterval(() => {
+                    if (i < text.length) {
+                        title.insertBefore(document.createTextNode(text.charAt(i)), cursor);
+                        i++;
+                    } else {
+                        clearInterval(typeInterval);
+                    }
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>

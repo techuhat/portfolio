@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Profile with Typing Game</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --primary-color: #00f7ff;
+            --secondary-color: #4d2fff;
+            --text-color: #e0e0ff;
+            --bg-color: #050b2e;
+            --card-bg: rgba(8, 14, 44, 0.7);
+            --glow-color: rgba(0, 247, 255, 0.6);
+            --success-color: #00ff88;
+            --error-color: #ff3366;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 20px;
+            background-image: 
+                radial-gradient(circle at 20% 35%, rgba(77, 47, 255, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 75% 44%, rgba(0, 247, 255, 0.1) 0%, transparent 50%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+        }
+        
+        .section {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent,
+                transparent,
+                transparent,
+                rgba(0, 247, 255, 0.1),
+                transparent,
+                transparent,
+                transparent
+            );
+            transform: rotate(30deg);
+            animation: glassShine 10s infinite linear;
+            z-index: -1;
+        }
+        
+        @keyframes glassShine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(30deg); }
+        }
+        
+        .title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 247, 255, 0.3);
+            text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+        }
+        
+        .title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), transparent);
+        }
+        
+        .hex-border {
+            position: absolute;
+            top: -90px;
+            right: -90px;
+            width: 180px;
+            height: 180px;
+            opacity: 0.3;
+        }
+        
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            position: relative;
+        }
+        
+        @media (min-width: 768px) {
+            .profile-container {
+                flex-direction: row;
+            }
+        }
+        
+        .profile-image-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+        }
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+            padding: 3px;
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 2;
+            filter: saturate(1.2) contrast(1.1);
+            box-shadow: 0 0 20px var(--glow-color);
+        }
+        
+        .profile-ring {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 180px;
+            height: 180px;
+            border: 1px dashed var(--primary-color);
+            border-radius: 50%;
+            animation: spin 15s linear infinite;
+            opacity: 0.6;
+        }
+        
+        .profile-ring:before,
+        .profile-ring:after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+        }
+        
+        .profile-ring:before {
+            left: -7.5px;
+        }
+        
+        .profile-ring:after {
+            right: -7.5px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .profile-image:hover {
+            transform: scale(1.1) rotate(360deg);
+            box-shadow: 0 0 30px var(--glow-color);
+            cursor: pointer;
+        }
+        
+        .profile-content {
+            flex: 1;
+            position: relative;
+        }
+        
+        .profile-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+            font-size: 16px;
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .highlight {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .author-name {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            margin-top: 25px;
+            text-align: right;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+        
+        .profile-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 8px 20px;
+            border: 1px solid var(--primary-color);
+            border-radius: 30px;
+            background: linear-gradient(90deg, rgba(0, 247, 255, 0.1), rgba(77, 47, 255, 0.1));
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .profile-link:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s;
+            z-index: -1;
+        }
+        
+        .profile-link:hover {
+            box-shadow: 0 0 15px var(--glow-color);
+            color: white;
+        }
+        
+        .profile-link:hover:before {
+            left: 100%;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 247, 255, 0.3);
+            color: var(--primary-color);
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background: var(--primary-color);
+            color: var(--bg-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 247, 255, 0.4);
+        }
+        
+        .skill-bars {
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .skill-bar {
+            position: relative;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .skill-bar:before {
+            content: attr(data-skill);
+            position: absolute;
+            top: -20px;
+            left: 0;
+            font-size: 14px;
+            color: var(--text-color);
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 5px;
+            position: relative;
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+        
+        .skill-percent {
+            position: absolute;
+            right: 0;
+            top: -20px;
+            font-size: 14px;
+            color: var(--primary-color);
+        }
+        
+        .section.loaded .skill-bars .skill-progress {
+            animation: loadSkills 1.5s forwards;
+        }
+        
+        @keyframes loadSkills {
+            to { width: var(--percent); }
+        }
+        
+        .blinking-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 20px;
+            background-color: var(--primary-color);
+            margin-left: 5px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            opacity: 0.5;
+        }
+        
+        /* Typing Game Styles */
+        .game-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+        }
+        
+        .game-container {
+            margin-top: 20px;
+        }
+        
+        .typing-challenge {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .challenge-text {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        
+        .typing-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--primary-color);
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 16px;
+            margin-bottom: 15px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .typing-input:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 15px var(--glow-color);
+        }
+        
+        .progress-container {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 5px;
+            transition: width 0.3s;
+        }
+        
+        .timer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--primary-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            min-width: 80px;
+            text-align: center;
+            border: 1px solid var(--primary-color);
+        }
+        
+        .game-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .game-btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(90deg, rgba(0, 247, 255, 0.3), rgba(77, 47, 255, 0.3));
+            color: #fff;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid var(--primary-color);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .game-btn:hover {
+            background: linear-gradient(90deg, rgba(0, 247, 255, 0.5), rgba(77, 47, 255, 0.5));
+            box-shadow: 0 0 15px var(--glow-color);
+            transform: translateY(-2px);
+        }
+        
+        .history-container {
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .history-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 247, 255, 0.3);
+            padding-bottom: 5px;
+        }
+        
+        .history-entry {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .history-entry:last-child {
+            border-bottom: none;
+        }
+        
+        .entry-time {
+            color: var(--primary-color);
+        }
+        
+        .rocket-animation {
+            position: absolute;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: bottom 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10;
+            display: none;
+        }
+        
+        .rocket-active {
+            display: block;
+            bottom: 50%;
+        }
+        
+        .rocket-container {
+            position: relative;
+            width: 100px;
+            height: 200px;
+        }
+        
+        .rocket {
+            width: 40px;
+            height: 80px;
+            background: linear-gradient(90deg, #ff3366, #ff6633);
+            border-radius: 50% 50% 0 0;
+            position: relative;
+            margin: 0 auto;
+            box-shadow: 0 0 20px rgba(255, 51, 102, 0.7);
+        }
+        
+        .rocket:before {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background-color: #e0e0ff;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
+        }
+        
+        .rocket:after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 30px;
+            background: linear-gradient(to bottom, #ff9933, transparent);
+            border-radius: 50% 50% 20% 20%;
+            filter: blur(5px);
+            animation: flame 0.2s infinite alternate;
+        }
+        
+        .rocket-window {
+            width: 15px;
+            height: 15px;
+            background-color: #e0e0ff;
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 2px solid #333;
+        }
+        
+        .rocket-fin-left, .rocket-fin-right {
+            position: absolute;
+            bottom: 10px;
+            width: 15px;
+            height: 25px;
+            background-color: #ff6633;
+        }
+        
+        .rocket-fin-left {
+            left: -15px;
+            clip-path: polygon(100% 0, 100% 100%, 0 100%);
+        }
+        
+        .rocket-fin-right {
+            right: -15px;
+            clip-path: polygon(0 0, 100% 100%, 0 100%);
+        }
+        
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 50%;
+        }
+        
+        @keyframes flame {
+            0% { height: 30px; opacity: 0.8; }
+            100% { height: 40px; opacity: 1; }
+        }
+        
+        .speed-message {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            color: var(--success-color);
+            text-shadow: 0 0 10px var(--success-color);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s;
+        }
+        
+        .speed-message.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="section about-section">
+        <svg class="hex-border" viewBox="0 0 100 100">
+            <polygon points="50,0 93.3,25 93.3,75 50,100 6.7,75 6.7,25" fill="none" stroke="rgba(0, 247, 255, 0.5)" stroke-width="1" />
+        </svg>
+        
+        <h3 class="title">About Me <span class="blinking-cursor"></span></h3>
+        
+        <div class="profile-container">
+            <div class="profile-image-container">
+                <div class="profile-ring"></div>
+                <img class="profile-image" src="https://th.bing.com/th/id/OIP.myBr_i86ku2B7EQAO3ZEgQAAAA?w=141&h=150&c=7&r=0&o=5&dpr=1.7&pid=1.7" alt="Mohammed Umar Khan's Profile Picture">
+            </div>
+            
+            <div class="profile-content">
+                <p><span class="highlight">Digital Education Specialist & Content Creator</span></p>
+                <p>Welcome to <span class="highlight">U Education World</span>. I'm Mohammed Umar Khan, a 19-year-old education enthusiast passionate about creating accessible digital learning experiences. My mission is to deliver high-quality educational content that empowers learners of all backgrounds.</p>
+                
+                <p>I believe in continuous improvement through feedback. Your comments and suggestions help me refine my content to ensure it meets the highest standards of accuracy and relevance. By subscribing to my platform, you'll receive notifications about new educational materials and resources as they're published.</p>
+                
+                <div class="skill-bars">
+                    <div class="skill-bar" data-skill="Web Development">
+                        <div class="skill-progress" style="--percent: 85%"></div>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                    <div class="skill-bar" data-skill="Content Creation">
+                        <div class="skill-progress" style="--percent: 92%"></div>
+                        <span class="skill-percent">92%</span>
+                    </div>
+                    <div class="skill-bar" data-skill="Educational Design">
+                        <div class="skill-progress" style="--percent: 78%"></div>
+                        <span class="skill-percent">78%</span>
+                    </div>
+                </div>
+                
+                <p class="author-name">Mohammed Umar Khan</p>
+                
+                <div class="social-icons">
+                    <a href="#" class="social-icon" aria-label="Facebook Profile">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Twitter Profile">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Instagram Profile">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                </div>
+                
+                <a class="profile-link" href="#" target="_blank">View Full Profile</a>
+            </div>
+        </div>
+        
+        <div class="particles" id="particles"></div>
+    </div>
+    
+    <div class="section game-section">
+        <h3 class="game-title">SpeedType Challenge <span class="blinking-cursor"></span></h3>
+        
+        <div class="game-container">
+            <div class="typing-challenge">
+                <div class="challenge-text" id="challenge-text">Type the text: "Education is the most powerful weapon which you can use to change the world."</div>
+                <input type="text" class="typing-input" id="typing-input" placeholder="Start typing..." disabled aria-label="Typing challenge input">
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <div class="timer" id="timer">0.00s</div>
+                
+                <div class="rocket-animation" id="rocket-animation">
+                    <div class="rocket-container">
+                        <div class="rocket">
+                            <div class="rocket-window"></div>
+                            <div class="rocket-fin-left"></div>
+                            <div class="rocket-fin-right"></div>
+                        </div>
+                        <div class="stars" id="stars"></div>
+                    </div>
+                    <div class="speed-message" id="speed-message">WARP SPEED! AMAZING!</div>
+                </div>
+            </div>
+            
+            <div class="game-buttons">
+                <button class="game-btn" id="play-btn">Play</button>
+                <button class="game-btn" id="reset-btn" disabled>Reset</button>
+                <button class="game-btn" id="restart-btn" disabled>Restart</button>
+            </div>
+            
+            <div class="history-container">
+                <div class="history-title">Your History</div>
+                <div class="history-entries" id="history-entries">
+                    <div class="history-entry">
+                        <span>Attempt your first challenge!</span>
+                        <span class="entry-time">--</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Add animation classes when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('loaded');
+            });
+            
+            // Create particles
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                createParticle(particlesContainer);
+            }
+            
+            // Initialize typing game
+            initTypingGame();
+        });
+        
+        function createParticle(container) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random position
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            particle.style.left = `${posX}%`;
+            particle.style.top = `${posY}%`;
+            
+            // Random size
+            const size = Math.random() * 3 + 1;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Random opacity
+            particle.style.opacity = Math.random() * 0.5 + 0.1;
+            
+            // Add to container
+            container.appendChild(particle);
+            
+            // Animate position
+            animateParticle(particle);
+        }
+        
+      // Continue from where the code was cut off
+
+function animateParticle(particle) {
+    const moveX = Math.random() * 10 - 5;
+    const moveY = Math.random() * 10 - 5;
+    const currentX = parseFloat(particle.style.left);
+    const currentY = parseFloat(particle.style.top);
+    
+    // Calculate new position
+    let newX = currentX + moveX;
+    let newY = currentY + moveY;
+    
+    // Keep particle within container
+    if (newX < 0) newX = 0;
+    if (newX > 100) newX = 100;
+    if (newY < 0) newY = 0;
+    if (newY > 100) newY = 100;
+    
+    // Apply new position with transition
+    particle.style.transition = 'left 3s ease-in-out, top 3s ease-in-out';
+    particle.style.left = `${newX}%`;
+    particle.style.top = `${newY}%`;
+    
+    // Continue animation after transition completes
+    setTimeout(() => {
+        animateParticle(particle);
+    }, 3000);
+}
+
+// Typing Game Logic
+function initTypingGame() {
+    const challengeText = document.getElementById('challenge-text');
+    const typingInput = document.getElementById('typing-input');
+    const progressBar = document.getElementById('progress-bar');
+    const timer = document.getElementById('timer');
+    const playBtn = document.getElementById('play-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    const restartBtn = document.getElementById('restart-btn');
+    const historyEntries = document.getElementById('history-entries');
+    const rocketAnimation = document.getElementById('rocket-animation');
+    const speedMessage = document.getElementById('speed-message');
+    
+    // Create stars for rocket animation
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 20; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        starsContainer.appendChild(star);
+    }
+    
+    let startTime = 0;
+    let timerInterval;
+    let isPlaying = false;
+    let originalText = "";
+    let elapsedTime = 0;
+    
+    // Array of quotes for typing challenges
+    const quotes = [
+        "Education is the most powerful weapon which you can use to change the world.",
+        "The beautiful thing about learning is that no one can take it away from you.",
+        "The more that you read, the more things you will know. The more that you learn, the more places you'll go.",
+        "Live as if you were to die tomorrow. Learn as if you were to live forever.",
+        "The purpose of education is to replace an empty mind with an open one."
+    ];
+    
+    // Update challenge text
+    function updateChallengeText() {
+        originalText = quotes[Math.floor(Math.random() * quotes.length)];
+        challengeText.textContent = `Type the text: "${originalText}"`;
+    }
+    
+    // Start the game
+    function startGame() {
+        isPlaying = true;
+        updateChallengeText();
+        
+        // Reset UI
+        typingInput.value = '';
+        typingInput.disabled = false;
+        typingInput.focus();
+        progressBar.style.width = '0%';
+        timer.textContent = '0.00s';
+        
+        // Update button states
+        playBtn.disabled = true;
+        resetBtn.disabled = false;
+        restartBtn.disabled = false;
+        
+        // Start timer
+        startTime = Date.now();
+        timerInterval = setInterval(updateTimer, 10);
+        
+        // Hide rocket animation
+        rocketAnimation.classList.remove('rocket-active');
+        speedMessage.classList.remove('active');
+    }
+    
+    // Update timer display
+    function updateTimer() {
+        elapsedTime = (Date.now() - startTime) / 1000;
+        timer.textContent = elapsedTime.toFixed(2) + 's';
+    }
+    
+    // Calculate typing speed (WPM)
+    function calculateWPM(time, text) {
+        // Average word length is 5 characters
+        const words = text.length / 5;
+        const minutes = time / 60;
+        return Math.round(words / minutes);
+    }
+    
+    // End the game
+    function endGame() {
+        isPlaying = false;
+        clearInterval(timerInterval);
+        
+        // Update UI
+        typingInput.disabled = true;
+        playBtn.disabled = false;
+        
+        // Calculate WPM
+        const wpm = calculateWPM(elapsedTime, originalText);
+        
+        // Show rocket animation for fast typists
+        if (wpm > 40) {
+            rocketAnimation.classList.add('rocket-active');
+            speedMessage.textContent = `${wpm} WPM! AMAZING!`;
+            speedMessage.classList.add('active');
+        }
+        
+        // Add to history
+        const historyEntry = document.createElement('div');
+        historyEntry.classList.add('history-entry');
+        historyEntry.innerHTML = `
+            <span>${wpm} WPM</span>
+            <span class="entry-time">${elapsedTime.toFixed(2)}s</span>
+        `;
+        
+        // Insert at the beginning
+        if (historyEntries.firstChild) {
+            historyEntries.insertBefore(historyEntry, historyEntries.firstChild);
+        } else {
+            historyEntries.appendChild(historyEntry);
+        }
+        
+        // Keep only last 5 entries
+        const entries = historyEntries.querySelectorAll('.history-entry');
+        if (entries.length > 5) {
+            historyEntries.removeChild(entries[entries.length - 1]);
+        }
+    }
+    
+    // Reset the game
+    function resetGame() {
+        isPlaying = false;
+        clearInterval(timerInterval);
+        
+        // Reset UI
+        typingInput.value = '';
+        typingInput.disabled = true;
+        progressBar.style.width = '0%';
+        timer.textContent = '0.00s';
+        
+        // Update button states
+        playBtn.disabled = false;
+        resetBtn.disabled = true;
+        restartBtn.disabled = true;
+        
+        // Hide rocket animation
+        rocketAnimation.classList.remove('rocket-active');
+        speedMessage.classList.remove('active');
+        
+        // Reset challenge text
+        challengeText.textContent = 'Type the text: "Education is the most powerful weapon which you can use to change the world."';
+        originalText = "";
+    }
+    
+    // Event Listeners
+    playBtn.addEventListener('click', startGame);
+    
+    resetBtn.addEventListener('click', resetGame);
+    
+    restartBtn.addEventListener('click', () => {
+        resetGame();
+        setTimeout(startGame, 100);
+    });
+    
+    typingInput.addEventListener('input', () => {
+        if (!isPlaying) return;
+        
+        const currentText = typingInput.value;
+        const targetText = originalText;
+        
+        // Calculate progress
+        const progress = (currentText.length / targetText.length) * 100;
+        progressBar.style.width = `${progress}%`;
+        
+        // Check if text is correct so far
+        if (targetText.startsWith(currentText)) {
+            typingInput.style.borderColor = 'var(--success-color)';
+            typingInput.style.boxShadow = '0 0 15px var(--success-color)';
+            
+            // Check if completed
+            if (currentText === targetText) {
+                endGame();
+            }
+        } else {
+            typingInput.style.borderColor = 'var(--error-color)';
+            typingInput.style.boxShadow = '0 0 15px var(--error-color)';
+        }
+    });
+    
+    // Reset styles when input is cleared
+    typingInput.addEventListener('focus', () => {
+        if (typingInput.value === '') {
+            typingInput.style.borderColor = 'var(--primary-color)';
+            typingInput.style.boxShadow = '0 0 15px var(--glow-color)';
+        }
+    });
+}
+    </script>
+</body>
+</html>
