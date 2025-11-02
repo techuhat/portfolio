@@ -372,6 +372,14 @@ const cyberdeckTerminal = {
     contactData: {},
     resumeStep: 0,
 
+    createBox(text) {
+        const length = text.length + 6; // text + 3 spaces on each side
+        const topBottom = '╔' + '═'.repeat(length) + '╗';
+        const middle = '║   ' + text + '   ║';
+        const bottom = '╚' + '═'.repeat(length) + '╝';
+        return [topBottom, middle, bottom];
+    },
+
     init() {
         this.shell = document.getElementById('terminal');
         this.output = document.getElementById('terminal-output');
@@ -475,10 +483,11 @@ const cyberdeckTerminal = {
 
     startResumeSequence() {
         this.resumeStep = 1;
+        const box = this.createBox('RESUME ACCESS PROTOCOL');
         this.appendLines([
-            '<span class="output-color">╔════════════════════════════════════════════╗</span>',
-            '<span class="output-color">║   RESUME ACCESS PROTOCOL                   ║</span>',
-            '<span class="output-color">╚════════════════════════════════════════════╝</span>',
+            `<span class="output-color">${box[0]}</span>`,
+            `<span class="output-color">${box[1]}</span>`,
+            `<span class="output-color">${box[2]}</span>`,
             '<span style="color: #00f7ff;">📄 Resume: Mohammad_Umar_Khan_Resume.pdf</span>',
             '<span style="color: #00ff88;">📧 Contact: ablogumar@gmail.com</span>',
             '<span style="color: #b026ff;">📱 Phone: +91 9161368619 / 6306993112</span>',
@@ -550,15 +559,15 @@ const cyberdeckTerminal = {
                     link.click();
                     document.body.removeChild(link);
 
+                    const successBox = this.createBox('DOWNLOAD SUCCESSFUL ✓');
                     this.appendLines([
                         '',
-                        '<span class="output-color">╔════════════════════════════════════════════╗</span>',
-                        '<span class="output-color">║   DOWNLOAD SUCCESSFUL ✓                    ║</span>',
-                        '<span class="output-color">╠════════════════════════════════════════════╣</span>',
-                        '<span class="output-color">║   File: Mohammad_Umar_Khan_Resume.pdf      ║</span>',
-                        '<span class="output-color">║   Status: Secured & Encrypted              ║</span>',
-                        '<span class="output-color">║   Next: Check your downloads folder        ║</span>',
-                        '<span class="output-color">╚════════════════════════════════════════════╝</span>',
+                        `<span class="output-color">${successBox[0]}</span>`,
+                        `<span class="output-color">${successBox[1]}</span>`,
+                        `<span class="output-color">${successBox[2]}</span>`,
+                        '<span class="output-color">File: Mohammad_Umar_Khan_Resume.pdf</span>',
+                        '<span class="output-color">Status: Secured & Encrypted</span>',
+                        '<span class="output-color">Check your downloads folder</span>',
                         '<span style="color: #00ff88;">Thank you for your interest! 🚀</span>',
                         ''
                     ]);
@@ -572,11 +581,12 @@ const cyberdeckTerminal = {
     },
 
     cancelDownload() {
+        const cancelBox = this.createBox('DOWNLOAD CANCELLED');
         this.appendLines([
             '',
-            '<span style="color: #ff3366;">╔════════════════════════════════════════════╗</span>',
-            '<span style="color: #ff3366;">║   DOWNLOAD CANCELLED                       ║</span>',
-            '<span style="color: #ff3366;">╚════════════════════════════════════════════╝</span>',
+            `<span style="color: #ff3366;">${cancelBox[0]}</span>`,
+            `<span style="color: #ff3366;">${cancelBox[1]}</span>`,
+            `<span style="color: #ff3366;">${cancelBox[2]}</span>`,
             '<span style="color: #ff8866;">It\'s sad for me... 😢</span>',
             '<span class="output-color">You can always download later by typing `resume`</span>',
             '<span style="color: #00f7ff;">Or contact me at: ablogumar@gmail.com</span>',
@@ -587,13 +597,22 @@ const cyberdeckTerminal = {
         this.prompt.textContent = '>';
     },
 
+    createBox(text) {
+        const length = text.length + 6; // text + 3 spaces on each side
+        const topBottom = '╔' + '═'.repeat(length) + '╗';
+        const middle = '║   ' + text + '   ║';
+        const bottom = '╚' + '═'.repeat(length) + '╝';
+        return [topBottom, middle, bottom];
+    },
+
     startContactSequence() {
         this.contactStep = 1;
         this.contactData = {};
+        const box = this.createBox('CONTACT PROTOCOL INITIATED');
         this.appendLines([
-            '<span class="output-color">╔════════════════════════════════════════════╗</span>',
-            '<span class="output-color">║   CONTACT PROTOCOL INITIATED               ║</span>',
-            '<span class="output-color">╚════════════════════════════════════════════╝</span>',
+            `<span class="output-color">${box[0]}</span>`,
+            `<span class="output-color">${box[1]}</span>`,
+            `<span class="output-color">${box[2]}</span>`,
             '<span class="output-color">Enter your full name:</span>'
         ]);
         this.prompt.textContent = 'Name>';
@@ -661,10 +680,11 @@ const cyberdeckTerminal = {
             }
             this.contactData.message = value;
             this.appendLine('\n<span style="color: #00ff88;">✓ Message received</span>');
+            const transmitBox = this.createBox('TRANSMITTING DATA PACKET...');
             this.appendLines([
-                '<span class="output-color">╔════════════════════════════════════════════╗</span>',
-                '<span class="output-color">║   TRANSMITTING DATA PACKET...              ║</span>',
-                '<span class="output-color">╚════════════════════════════════════════════╝</span>'
+                `<span class="output-color">${transmitBox[0]}</span>`,
+                `<span class="output-color">${transmitBox[1]}</span>`,
+                `<span class="output-color">${transmitBox[2]}</span>`
             ]);
 
             await this.sendMessage();
@@ -691,19 +711,18 @@ const cyberdeckTerminal = {
             );
 
             if (response.status === 200) {
+                const successBox = this.createBox('TRANSMISSION SUCCESSFUL');
                 this.appendLines([
                     '<span style="color: #00ff88;">✓ CONNECTION ESTABLISHED</span>',
                     '<span style="color: #00ff88;">✓ DATA PACKET TRANSMITTED</span>',
                     '<span style="color: #00ff88;">✓ ACKNOWLEDGMENT RECEIVED</span>',
-                    '<span class="output-color">╔════════════════════════════════════════════╗</span>',
-                    '<span class="output-color">║   TRANSMISSION SUCCESSFUL                  ║</span>',
-                    '<span class="output-color">╠════════════════════════════════════════════╣</span>',
-                    `<span class="output-color">║   Name: ${this.formatField(this.contactData.name, 33)} ║</span>`,
-                    `<span class="output-color">║   Email: ${this.formatField(this.contactData.email, 32)} ║</span>`,
-                    '<span class="output-color">╠════════════════════════════════════════════╣</span>',
-                    '<span class="output-color">║   Message delivered to Mohammad Umar Khan  ║</span>',
-                    '<span class="output-color">║   Expected response time: 24-48 hours      ║</span>',
-                    '<span class="output-color">╚════════════════════════════════════════════╝</span>'
+                    `<span class="output-color">${successBox[0]}</span>`,
+                    `<span class="output-color">${successBox[1]}</span>`,
+                    `<span class="output-color">${successBox[2]}</span>`,
+                    `<span class="output-color">Name: ${this.contactData.name}</span>`,
+                    `<span class="output-color">Email: ${this.contactData.email}</span>`,
+                    '<span class="output-color">Message delivered to Mohammad Umar Khan</span>',
+                    '<span class="output-color">Expected response time: 24-48 hours</span>'
                 ]);
             } else {
                 throw new Error('Failed to send message');
