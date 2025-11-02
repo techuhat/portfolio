@@ -370,6 +370,7 @@ const cyberdeckTerminal = {
     historyIndex: -1,
     contactStep: 0,
     contactData: {},
+    resumeStep: 0,
 
     init() {
         this.shell = document.getElementById('terminal');
@@ -388,12 +389,14 @@ const cyberdeckTerminal = {
             projects: () => this.projects.length ? this.projects.join('\n') : 'Projects list unavailable.',
             socials: () => 'GitHub: github.com/techuhat\nLinkedIn: linkedin.com/in/mohdkhanumar',
             info: () => 'BASE: India (IST)\nEMAIL: ablogumar@gmail.com\nCONTACT: +91 9161368619 / 6306993112\nSTATUS: Available Full-Time',
-            resume: () => 'Technical documentation available on request. Contact: ablogumar@gmail.com',
+            resume: () => { this.startResumeSequence(); return ''; },
             education: () => 'BCA - Integral University, Lucknow (2023-2026)\nIntermediate (Science) - Buddha Intermediate College, UP Board (2021-2022)',
             certifications: () => 'Bootcamp Certified: HTML, CSS, Bootstrap\nResearching: AI-Driven Web Defense Systems\nExploring: IoT Security & Network Vulnerability Testing\nPassion: Open-Source, Reverse Engineering, Ethical Hacking',
             clear: () => { this.output.innerHTML = ''; return ''; },
             contact: () => { this.startContactSequence(); return ''; },
-            date: () => new Date().toString()
+            date: () => new Date().toString(),
+            yes: () => { if (this.resumeStep === 1) { this.downloadResume(); return ''; } return 'Command not recognized. Type `help` for assistance.'; },
+            no: () => { if (this.resumeStep === 1) { this.cancelDownload(); return ''; } return 'Command not recognized. Type `help` for assistance.'; }
         };
 
         this.type('MUK CYBERDECK v2.0 — Optimized for Security, Precision & Performance\nType `help` to browse secure network commands.\n\n');
@@ -413,7 +416,9 @@ const cyberdeckTerminal = {
             const promptLabel = this.prompt.textContent || '>';
             this.appendLine(`\n<span class="prompt-color">${promptLabel}</span> ${value}`);
 
-            if (this.contactStep > 0) {
+            if (this.resumeStep > 0) {
+                this.processResumeStep(value);
+            } else if (this.contactStep > 0) {
                 this.processContactStep(value);
             } else if (value) {
                 this.processCommand(value);
@@ -466,6 +471,120 @@ const cyberdeckTerminal = {
         if (result) {
             this.type(`\n<span class='output-color'>${result}</span>`);
         }
+    },
+
+    startResumeSequence() {
+        this.resumeStep = 1;
+        this.appendLines([
+            '<span class="output-color">╔════════════════════════════════════════════╗</span>',
+            '<span class="output-color">║   RESUME ACCESS PROTOCOL                   ║</span>',
+            '<span class="output-color">╚════════════════════════════════════════════╝</span>',
+            '<span style="color: #00f7ff;">📄 Resume: Mohammad_Umar_Khan_Resume.pdf</span>',
+            '<span style="color: #00ff88;">📧 Contact: ablogumar@gmail.com</span>',
+            '<span style="color: #b026ff;">📱 Phone: +91 9161368619 / 6306993112</span>',
+            '',
+            '<span class="output-color">Would you like to download the resume?</span>',
+            '<span style="color: #00f7ff;">Type `yes` to download or `no` to cancel</span>'
+        ]);
+        this.prompt.textContent = 'Download>';
+    },
+
+    processResumeStep(value) {
+        const answer = value.toLowerCase().trim();
+        
+        if (answer === 'yes' || answer === 'y') {
+            this.downloadResume();
+        } else if (answer === 'no' || answer === 'n') {
+            this.cancelDownload();
+        } else {
+            this.appendLine('\n<span style="color: #ff3366;">Invalid input. Please type `yes` or `no`</span>');
+        }
+    },
+
+    downloadResume() {
+        this.appendLines([
+            '',
+            '<span style="color: #00f7ff;">⟳ Initializing download...</span>',
+            '<span style="color: #00f7ff;">⟳ Fetching resume from secure server...</span>',
+            ''
+        ]);
+
+        // Create download progress bar
+        const progressContainer = document.createElement('div');
+        progressContainer.className = 'download-progress-container';
+        progressContainer.innerHTML = `
+            <div class="download-progress-bar">
+                <div class="download-progress-fill" id="resumeProgressFill"></div>
+            </div>
+            <div class="download-progress-text">
+                <span id="resumeProgressPercent">0%</span> • 
+                <span id="resumeProgressStatus">Downloading...</span>
+            </div>
+        `;
+        this.output.appendChild(progressContainer);
+
+        // Simulate download progress
+        let progress = 0;
+        const progressFill = document.getElementById('resumeProgressFill');
+        const progressPercent = document.getElementById('resumeProgressPercent');
+        const progressStatus = document.getElementById('resumeProgressStatus');
+
+        const interval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress > 100) progress = 100;
+            
+            progressFill.style.width = progress + '%';
+            progressPercent.textContent = Math.floor(progress) + '%';
+
+            if (progress >= 100) {
+                clearInterval(interval);
+                progressStatus.textContent = 'Complete!';
+                progressFill.style.background = 'linear-gradient(90deg, #00ff88, #00f7ff)';
+                
+                setTimeout(() => {
+                    // Trigger actual download
+                    const link = document.createElement('a');
+                    link.href = 'resume/Mohammad_Umar_Khan_Resume.pdf'; // You'll need to upload your resume here
+                    link.download = 'Mohammad_Umar_Khan_Resume.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+
+                    this.appendLines([
+                        '',
+                        '<span class="output-color">╔════════════════════════════════════════════╗</span>',
+                        '<span class="output-color">║   DOWNLOAD SUCCESSFUL ✓                    ║</span>',
+                        '<span class="output-color">╠════════════════════════════════════════════╣</span>',
+                        '<span class="output-color">║   File: Mohammad_Umar_Khan_Resume.pdf      ║</span>',
+                        '<span class="output-color">║   Status: Secured & Encrypted              ║</span>',
+                        '<span class="output-color">║   Next: Check your downloads folder        ║</span>',
+                        '<span class="output-color">╚════════════════════════════════════════════╝</span>',
+                        '<span style="color: #00ff88;">Thank you for your interest! 🚀</span>',
+                        ''
+                    ]);
+                    
+                    this.resumeStep = 0;
+                    this.prompt.textContent = '>';
+                    this.scrollToBottom();
+                }, 500);
+            }
+        }, 100);
+    },
+
+    cancelDownload() {
+        this.appendLines([
+            '',
+            '<span style="color: #ff3366;">╔════════════════════════════════════════════╗</span>',
+            '<span style="color: #ff3366;">║   DOWNLOAD CANCELLED                       ║</span>',
+            '<span style="color: #ff3366;">╚════════════════════════════════════════════╝</span>',
+            '<span style="color: #ff8866;">It\'s sad for me... 😢</span>',
+            '<span class="output-color">You can always download later by typing `resume`</span>',
+            '<span style="color: #00f7ff;">Or contact me at: ablogumar@gmail.com</span>',
+            ''
+        ]);
+        
+        this.resumeStep = 0;
+        this.prompt.textContent = '>';
     },
 
     startContactSequence() {
