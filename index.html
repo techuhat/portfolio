@@ -1,0 +1,456 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammad Umar Wajid Khan | Cybernetic Portfolio</title>
+    <meta name="description" content="The ultimate futuristic portfolio featuring neural network visualizations, interactive terminals, and cutting-edge design.">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/inter-ui@3.19.3/inter.min.css">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- EmailJS Library -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="absolute top-6 right-6 text-3xl text-white" id="mobileMenuClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <nav class="flex flex-col space-y-6 mt-16">
+            <a href="#about" class="nav-link text-xl mobile-link">About</a>
+            <a href="#journey" class="nav-link text-xl mobile-link">Journey</a>
+            <a href="#projects" class="nav-link text-xl mobile-link">Projects</a>
+            <a href="#contact" class="nav-link text-xl mobile-link">Contact</a>
+        </nav>
+        <div class="mt-12">
+            <div class="flex space-x-6">
+                <a href="https://github.com/techuhat" class="text-2xl" style="color: var(--cyber-blue);">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/mohdkhanumar/" class="text-2xl" style="color: var(--cyber-blue);">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="cyber-navbar" id="navbar">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold" style="color: var(--cyber-blue); text-shadow: 0 0 10px var(--cyber-blue);">
+                MUK<span style="color: var(--cyber-purple);">.</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#journey" class="nav-link">Journey</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <button class="md:hidden text-white text-2xl" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10">
+        <!-- Hero Section -->
+        <section id="hero" class="hero-cyber" style="position: relative; background: linear-gradient(rgba(10, 14, 39, 0.85), rgba(10, 14, 39, 0.85)), url('uk.png') center/cover no-repeat;">
+            <div class="hero-content">
+                <div class="cyber-subtitle fade-in">SYSTEM ONLINE // NEURAL LINK ESTABLISHED</div>
+                <h1 class="cyber-title glitch-text" data-text="MOHAMMAD UMAR WAJID KHAN" id="hero-name">
+                    MOHAMMAD UMAR WAJID KHAN
+                </h1>
+                <p class="cyber-subtitle fade-in" style="animation-delay: 0.3s;" id="hero-role">
+                    FULL-STACK ENGINEER × CYBERSECURITY ENTHUSIAST × DIGITAL ARCHITECT
+                </p>
+                <div class="mt-12 hero-actions fade-in" style="animation-delay: 0.6s;">
+                    <a href="#projects" class="cyber-btn">
+                        View Projects <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="#contact" class="cyber-btn">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-24" style="background: var(--darker-base);">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="flex flex-col md:flex-row items-center gap-16">
+                    <div class="md:w-2/5 fade-in">
+                        <div class="relative">
+                            <div class="w-full max-w-sm mx-auto rounded-lg overflow-hidden border-4 border-cyan-400 relative" style="box-shadow: 0 0 50px rgba(0, 240, 255, 0.5);">
+                                <img src="images/umar.jpg" alt="Mohammad Umar Khan" class="w-full h-full object-cover" style="object-position: top;">
+                                <div class="absolute inset-0 bg-gradient-to-t from-cyan-900/50 to-transparent"></div>
+                            </div>
+                            <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-6">
+                                <a href="https://github.com/techuhat" class="w-12 h-12 flex items-center justify-center rounded-full bg-cyan-500/20 border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-500 hover:text-white transition-all duration-300" style="box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);">
+                                    <i class="fab fa-github text-xl"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/mohdkhanumar/" class="w-12 h-12 flex items-center justify-center rounded-full bg-cyan-500/20 border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-500 hover:text-white transition-all duration-300" style="box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);">
+                                    <i class="fab fa-linkedin text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-3/5 fade-in">
+                        <h2 class="section-heading text-left">System Overview</h2>
+                        <div class="cyber-card">
+                            <p class="text-lg mb-4 leading-relaxed">
+                                Mohammad Umar Wajid Khan — BCA Final Year | Full-Stack Developer | Cybersecurity & AI Explorer
+                            </p>
+                            <p class="text-lg mb-4 leading-relaxed" style="color: var(--text-dim);">
+                                Engineer by training, technologist by passion. I specialize in crafting scalable web systems, intelligent automation, and secure digital infrastructures that connect creativity with precision. My journey began with curiosity about how systems work beneath the interface — now it's about how to make them smarter, faster, and more secure.
+                            </p>
+                            <p class="text-lg mb-4 leading-relaxed" style="color: var(--text-dim);">
+                                I build, break, and rebuild — reverse-engineering logic and experimenting with AI-driven tools, network protocols, and modern frameworks to understand both creation and protection in technology.
+                            </p>
+                            <p class="text-lg leading-relaxed" style="color: var(--text-dim);">
+                                Currently preparing to enter the cybersecurity domain, where my goal is to combine full-stack engineering with security intelligence — developing applications that are not only high-performing but resilient against threats.
+                            </p>
+                        </div>
+                        <div class="mt-8">
+                            <h3 class="text-xl font-bold mb-4" style="color: var(--cyber-blue);">Core Competencies</h3>
+                            <div class="mb-6">
+                                <h4 class="text-md font-semibold mb-3" style="color: var(--cyber-purple);">Web & Software Engineering</h4>
+                                <div class="flex flex-wrap">
+                                    <div class="skill-badge"><i class="fab fa-js"></i> JavaScript ES6+</div>
+                                    <div class="skill-badge"><i class="fab fa-react"></i> React.js</div>
+                                    <div class="skill-badge"><i class="fab fa-node-js"></i> Node.js</div>
+                                    <div class="skill-badge"><i class="fab fa-html5"></i> HTML5/CSS3</div>
+                                    <div class="skill-badge"><i class="fab fa-bootstrap"></i> Bootstrap</div>
+                                    <div class="skill-badge"><i class="fas fa-fire"></i> Firebase</div>
+                                    <div class="skill-badge"><i class="fas fa-code"></i> RESTful APIs</div>
+                                    <div class="skill-badge"><i class="fas fa-database"></i> SQL & NoSQL</div>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="text-md font-semibold mb-3" style="color: var(--cyber-purple);">Cybersecurity Fundamentals</h4>
+                                <div class="flex flex-wrap">
+                                    <div class="skill-badge"><i class="fas fa-lock"></i> Encryption & Auth</div>
+                                    <div class="skill-badge"><i class="fas fa-shield-alt"></i> Secure API Design</div>
+                                    <div class="skill-badge"><i class="fas fa-network-wired"></i> Network Protocols</div>
+                                    <div class="skill-badge"><i class="fas fa-user-secret"></i> Ethical Hacking</div>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="text-md font-semibold mb-3" style="color: var(--cyber-purple);">AI & Automation</h4>
+                                <div class="flex flex-wrap">
+                                    <div class="skill-badge"><i class="fas fa-robot"></i> AI-assisted Dev</div>
+                                    <div class="skill-badge"><i class="fas fa-brain"></i> Intelligent Agents</div>
+                                    <div class="skill-badge"><i class="fas fa-chart-line"></i> Algorithm Optimization</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Journey Section -->
+        <section id="journey" class="py-24" style="background: var(--dark-base); position: relative; overflow: hidden;">
+            <!-- Matrix-style Falling Binary Background -->
+            <div class="binary-bg" id="binaryBg">
+                <canvas id="matrixCanvas"></canvas>
+            </div>
+            
+            <div class="container mx-auto px-6 md:px-12" style="position: relative; z-index: 2;">
+                <h2 class="section-heading fade-in">Learning Timeline — System Logs</h2>
+                
+                <!-- 3D Carousel Container -->
+                <div class="carousel-3d-container">
+                    <div class="carousel-3d" id="journeyCarousel">
+                        <!-- Phase 01 -->
+                        <div class="carousel-card active" data-index="0">
+                            <div class="cyber-card">
+                                <div style="display: inline-block; padding: 0.5rem 1rem; background: rgba(0, 240, 255, 0.1); border: 2px solid var(--cyber-blue); border-radius: 0.5rem; margin-bottom: 1rem; font-weight: 700; color: var(--cyber-blue); font-size: 0.875rem; letter-spacing: 0.1em;">
+                                    PHASE 01
+                                </div>
+                                <h3 class="text-2xl font-bold mb-2" style="color: var(--cyber-blue);">Foundations in Python & Logic</h3>
+                                <p class="text-sm mb-4" style="color: var(--cyber-purple);">
+                                    <i class="fas fa-clock mr-2"></i>2019
+                                </p>
+                                <p style="color: var(--text-dim);">
+                                    Learned to think like a machine. Practiced algorithms, loops, and problem-solving structures that built my logical core.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Phase 02 -->
+                        <div class="carousel-card" data-index="1">
+                            <div class="cyber-card">
+                                <div style="display: inline-block; padding: 0.5rem 1rem; background: rgba(176, 38, 255, 0.1); border: 2px solid var(--cyber-purple); border-radius: 0.5rem; margin-bottom: 1rem; font-weight: 700; color: var(--cyber-purple); font-size: 0.875rem; letter-spacing: 0.1em;">
+                                    PHASE 02
+                                </div>
+                                <h3 class="text-2xl font-bold mb-2" style="color: var(--cyber-blue);">Frontend Architecture & Design</h3>
+                                <p class="text-sm mb-4" style="color: var(--cyber-purple);">
+                                    <i class="fas fa-clock mr-2"></i>2021 - Present
+                                </p>
+                                <p style="color: var(--text-dim);">
+                                    Completed multiple bootcamps in HTML, CSS, and Bootstrap. Developed the skill to convert raw ideas into elegant, responsive user interfaces.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Phase 03 -->
+                        <div class="carousel-card" data-index="2">
+                            <div class="cyber-card">
+                                <div style="display: inline-block; padding: 0.5rem 1rem; background: rgba(255, 0, 64, 0.1); border: 2px solid var(--cyber-red); border-radius: 0.5rem; margin-bottom: 1rem; font-weight: 700; color: var(--cyber-red); font-size: 0.875rem; letter-spacing: 0.1em;">
+                                    PHASE 03
+                                </div>
+                                <h3 class="text-2xl font-bold mb-2" style="color: var(--cyber-blue);">Full-Stack & AI Systems</h3>
+                                <p class="text-sm mb-4" style="color: var(--cyber-purple);">
+                                    <i class="fas fa-clock mr-2"></i>2023 - 2025
+                                </p>
+                                <p style="color: var(--text-dim);">
+                                    Explored JavaScript ecosystems, API development, and AI-assisted workflows. Learned to merge backend performance with frontend aesthetics.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Phase 04 -->
+                        <div class="carousel-card" data-index="3">
+                            <div class="cyber-card">
+                                <div style="display: inline-block; padding: 0.5rem 1rem; background: rgba(57, 255, 20, 0.1); border: 2px solid var(--neon-green); border-radius: 0.5rem; margin-bottom: 1rem; font-weight: 700; color: var(--neon-green); font-size: 0.875rem; letter-spacing: 0.1em;">
+                                    PHASE 04
+                                </div>
+                                <h3 class="text-2xl font-bold mb-2" style="color: var(--cyber-blue);">Cybersecurity & System Defense</h3>
+                                <p class="text-sm mb-4" style="color: var(--cyber-purple);">
+                                    <i class="fas fa-clock mr-2"></i>2025 - Present
+                                </p>
+                                <p style="color: var(--text-dim);">
+                                    Transitioning focus toward application security, ethical hacking, and data protection. Researching vulnerabilities in real-world systems and experimenting with securing APIs, tokens, and databases.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Controls -->
+                    <div class="carousel-controls">
+                        <button class="carousel-nav-btn" id="prevCarousel">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-nav-btn" id="nextCarousel">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Indicators -->
+                    <div class="carousel-indicators">
+                        <span class="indicator active" data-index="0"></span>
+                        <span class="indicator" data-index="1"></span>
+                        <span class="indicator" data-index="2"></span>
+                        <span class="indicator" data-index="3"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-24" style="background: var(--darker-base);">
+            <div class="container mx-auto px-6 md:px-12">
+                <h2 class="section-heading fade-in">Featured Projects</h2>
+                <p class="text-center text-xl mb-16 fade-in" style="color: var(--text-dim); max-width: 800px; margin-left: auto; margin-right: auto;">
+                    A selection of my recent work showcasing my skills and experience in web development.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Project 1 -->
+                    <div class="project-card fade-in">
+                        <div class="project-image">
+                            <img src="images/naasamajh.png" alt="Kerala Tourism Data Collection App">
+                        </div>
+                        <div class="p-6 relative z-10">
+                            <h3 class="text-2xl font-bold mb-3" style="color: var(--cyber-blue);">Kerala Tourism Data Collection App</h3>
+                            <p class="mb-4" style="color: var(--text-dim);">
+                                Developed an app for regional data collection and analytics. Designed secure data flow architecture and implemented modular UI.
+                            </p>
+                            <div class="mb-4">
+                                <span class="tech-tag">Data Security</span>
+                                <span class="tech-tag">Analytics</span>
+                                <span class="tech-tag">Modular UI</span>
+                            </div>
+                            <a href="#" class="cyber-btn text-sm py-2 px-4">
+                                View Project <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card fade-in" style="animation-delay: 0.2s;">
+                        <div class="project-image">
+                            <img src="images/toolkit.png" alt="AI-Powered Portfolio Project">
+                        </div>
+                        <div class="p-6 relative z-10">
+                            <h3 class="text-2xl font-bold mb-3" style="color: var(--cyber-blue);">AI-Powered Portfolio Project</h3>
+                            <p class="mb-4" style="color: var(--text-dim);">
+                                Built an AI-assisted personal portfolio to automate coding and responsive design. Explored integration of machine intelligence into development workflows.
+                            </p>
+                            <div class="mb-4">
+                                <span class="tech-tag">AI Integration</span>
+                                <span class="tech-tag">Automation</span>
+                                <span class="tech-tag">Privacy-First</span>
+                            </div>
+                            <a href="#" class="cyber-btn text-sm py-2 px-4">
+                                View Project <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card fade-in" style="animation-delay: 0.4s;">
+                        <div class="project-image">
+                            <img src="images/u.png" alt="Messaging Application">
+                        </div>
+                        <div class="p-6 relative z-10">
+                            <h3 class="text-2xl font-bold mb-3" style="color: var(--cyber-blue);">Messaging Application</h3>
+                            <p class="mb-4" style="color: var(--text-dim);">
+                                Developing a real-time encrypted chat application with secure user authentication and data protection mechanisms. (2025 – Ongoing)
+                            </p>
+                            <div class="mb-4">
+                                <span class="tech-tag">End-to-End Encryption</span>
+                                <span class="tech-tag">Secure Sockets</span>
+                                <span class="tech-tag">Database Safety</span>
+                            </div>
+                            <a href="#" class="cyber-btn text-sm py-2 px-4">
+                                View Project <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="project-card fade-in" style="animation-delay: 0.6s;">
+                        <div class="project-image">
+                            <img src="images/u.png" alt="AI Agent Website Series">
+                        </div>
+                        <div class="p-6 relative z-10">
+                            <h3 class="text-2xl font-bold mb-3" style="color: var(--cyber-blue);">AI Agent Website Series</h3>
+                            <p class="mb-4" style="color: var(--text-dim);">
+                                Created small-scale AI web applications for testing workflow automation, cyber-protocols, and secure backend connectivity.
+                            </p>
+                            <div class="mb-4">
+                                <span class="tech-tag">Automation</span>
+                                <span class="tech-tag">Modular Backend</span>
+                                <span class="tech-tag">Agent Access</span>
+                            </div>
+                            <a href="#" class="cyber-btn text-sm py-2 px-4">
+                                View Project <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24" style="background: var(--dark-base);">
+            <div class="container mx-auto px-6 md:px-12">
+                <div class="text-center mb-16 fade-in">
+                    <span class="terminal-banner"><i class="fas fa-terminal"></i> Contact Form</span>
+                    <h2 class="section-heading" style="margin-bottom: 2rem;">
+                       <span class="contact-heading">CONTACT FORM</span>
+                    </h2>
+                    <p class="text-center text-xl mt-6" style="color: var(--text-dim); max-width: 760px; margin-left: auto; margin-right: auto;">
+                        Access my portfolio's command-line interface. Type <code>help</code> to get started.
+                    </p>
+                </div>
+
+                <div class="contact-grid fade-in" style="animation-delay: 0.2s;">
+                    <div class="cyber-info-card">
+                        <div class="info-heading"><i class="fas fa-envelope"></i>Email Protocol</div>
+                        <div class="info-label">Primary Channel</div>
+                        <div class="info-value"><a href="mailto:ablogumar@gmail.com" style="color: var(--text-bright);">ablogumar@gmail.com</a></div>
+                        <div class="info-label">Contact</div>
+                        <div class="info-value">+91 9161368619 / 6306993112</div>
+                        <div class="info-label">Availability</div>
+                        <div class="info-value">Full-Time</div>
+                    </div>
+
+                    <div class="cyber-info-card">
+                        <div class="info-heading"><i class="fas fa-map-marker-alt"></i>Location Matrix</div>
+                        <div class="info-label">Base Station</div>
+                        <div class="info-value">India</div>
+                        <div class="info-label">Timezone</div>
+                        <div class="info-value">IST (GMT+5:30)</div>
+                    </div>
+
+                    <div class="cyber-info-card">
+                        <div class="info-heading"><i class="fas fa-satellite-dish"></i>Signal Links</div>
+                        <div class="info-label">Connect Securely</div>
+                        <div class="info-links">
+                            <a href="https://github.com/techuhat" class="info-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/mohdkhanumar/" class="info-link" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://wa.me/919161368619" class="info-link" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                        <div class="info-label" style="margin-top: 1.5rem;">Quick Commands</div>
+                        <div style="color: var(--text-dim); font-size: 0.85rem; line-height: 1.6;">
+                            <code>info</code> · <code>socials</code> · <code>resume</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cyber-terminal fade-in" id="terminal-wrapper">
+                    <div id="terminal" tabindex="0">
+                        <div id="terminal-output"></div>
+                        <div id="input-line">
+                            <span id="prompt">&gt;</span>
+                            <input type="text" id="terminal-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                            <span id="terminal-cursor"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="hidden" type="button" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="py-12" style="background: var(--darker-base); border-top: 1px solid rgba(0, 240, 255, 0.2);">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <a href="#" class="text-2xl font-bold" style="color: var(--cyber-blue); text-shadow: 0 0 10px var(--cyber-blue);">
+                        Mohammad Umar Wajid Khan
+                    </a>
+                    <p class="mt-2" style="color: var(--text-dim);">Optimized for Security, Precision & Performance</p>
+                </div>
+                
+                <div class="flex space-x-8 mb-6 md:mb-0">
+                    <a href="#about" class="hover:text-white transition-colors" style="color: var(--text-dim);">About</a>
+                    <a href="#journey" class="hover:text-white transition-colors" style="color: var(--text-dim);">Journey</a>
+                    <a href="#projects" class="hover:text-white transition-colors" style="color: var(--text-dim);">Projects</a>
+                    <a href="#contact" class="hover:text-white transition-colors" style="color: var(--text-dim);">Contact</a>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="https://github.com/techuhat" class="text-2xl hover:text-white transition-colors" style="color: var(--cyber-blue);">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mohdkhanumar/" class="text-2xl hover:text-white transition-colors" style="color: var(--cyber-blue);">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10 pt-10" style="border-top: 1px solid rgba(0, 240, 255, 0.1);">
+                <p style="color: var(--text-dim);">&copy; 2025 Mohammad Umar Khan. Engineered with precision.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
