@@ -1284,21 +1284,25 @@ textarea:focus {
     50% { transform: translateY(-10px); }
 }
 
+/* Professional Mobile Menu with Smooth Animations */
 .mobile-menu {
     position: fixed;
     top: 0;
     right: -100%;
     width: 85%;
-    max-width: 400px;
+    max-width: 380px;
     height: 100vh;
-    background: rgba(10, 14, 39, 0.98);
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.98), rgba(15, 20, 50, 0.98));
     backdrop-filter: blur(20px);
-    padding: 2rem;
+    padding: 0;
     z-index: 2000;
-    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border-left: 2px solid var(--cyber-blue);
-    box-shadow: -10px 0 50px rgba(0, 240, 255, 0.3);
+    transition: right 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border-left: 1px solid rgba(0, 240, 255, 0.3);
+    box-shadow: -10px 0 60px rgba(0, 0, 0, 0.8),
+                -5px 0 30px rgba(0, 240, 255, 0.2);
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .mobile-menu.active {
@@ -1311,11 +1315,12 @@ textarea:focus {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
     z-index: 1999;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .mobile-menu-overlay.active {
@@ -1323,54 +1328,155 @@ textarea:focus {
     visibility: visible;
 }
 
+/* Mobile Menu Header */
+.mobile-menu::before {
+    content: 'NAVIGATION';
+    display: block;
+    padding: 2rem 2rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--cyber-blue);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+    margin-bottom: 1rem;
+}
+
+/* Hamburger Button - Professional Design */
 #mobileMenuBtn {
     position: relative;
-    padding: 0.5rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    background: transparent;
-    border: 2px solid transparent;
+    padding: 0.6rem;
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(0, 240, 255, 0.05);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    overflow: hidden;
+}
+
+#mobileMenuBtn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(0, 240, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+}
+
+#mobileMenuBtn:hover::before {
+    width: 120%;
+    height: 120%;
 }
 
 #mobileMenuBtn:hover {
-    background: rgba(0, 240, 255, 0.1);
-    border-color: rgba(0, 240, 255, 0.3);
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
-    transform: scale(1.05);
+    background: rgba(0, 240, 255, 0.15);
+    border-color: var(--cyber-blue);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.3),
+                inset 0 0 15px rgba(0, 240, 255, 0.1);
+    transform: scale(1.08);
 }
 
 #mobileMenuBtn:active {
     transform: scale(0.95);
 }
 
-#mobileMenuClose {
+#mobileMenuBtn i {
     position: relative;
-    padding: 0.5rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    background: transparent;
-    border: 2px solid transparent;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+#mobileMenuBtn:hover i {
+    transform: rotate(180deg);
+}
+
+/* Close Button - Animated X with Glow */
+#mobileMenuClose {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    background: rgba(255, 50, 80, 0.1);
+    border: 2px solid rgba(255, 50, 80, 0.3);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#mobileMenuClose::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 50, 80, 0.3), transparent);
+    transform: scale(0);
+    transition: transform 0.4s ease;
+    border-radius: 50%;
+}
+
+#mobileMenuClose:hover::before {
+    transform: scale(1.5);
 }
 
 #mobileMenuClose:hover {
-    background: rgba(255, 0, 64, 0.1);
-    border-color: rgba(255, 0, 64, 0.3);
-    box-shadow: 0 0 15px rgba(255, 0, 64, 0.2);
-    color: var(--cyber-red);
-    transform: scale(1.1) rotate(90deg);
+    background: rgba(255, 50, 80, 0.2);
+    border-color: var(--cyber-red);
+    box-shadow: 0 0 25px rgba(255, 50, 80, 0.5),
+                inset 0 0 20px rgba(255, 50, 80, 0.2);
+    transform: rotate(90deg) scale(1.15);
 }
 
 #mobileMenuClose:active {
-    transform: scale(0.9) rotate(90deg);
+    transform: rotate(90deg) scale(0.9);
+}
+
+#mobileMenuClose i {
+    position: relative;
+    z-index: 1;
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+}
+
+#mobileMenuClose:hover i {
+    color: #ff3366;
+    text-shadow: 0 0 10px rgba(255, 50, 80, 0.8);
+}
+
+/* Mobile Menu Links - Professional Slide-in Effect */
+.mobile-menu nav {
+    padding: 1rem 0;
+    flex: 1;
 }
 
 .mobile-menu .mobile-link {
     position: relative;
     display: block;
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    padding: 1.2rem 2rem;
+    margin: 0.3rem 1rem;
+    border-radius: 12px;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(30px);
 }
+
+.mobile-menu.active .mobile-link {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.mobile-menu.active .mobile-link:nth-child(1) { transition-delay: 0.1s; }
+.mobile-menu.active .mobile-link:nth-child(2) { transition-delay: 0.15s; }
+.mobile-menu.active .mobile-link:nth-child(3) { transition-delay: 0.2s; }
+.mobile-menu.active .mobile-link:nth-child(4) { transition-delay: 0.25s; }
 
 .mobile-menu .mobile-link::before {
     content: '';
@@ -1378,11 +1484,11 @@ textarea:focus {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 3px;
+    width: 4px;
     height: 0;
-    background: var(--cyber-blue);
-    transition: height 0.3s ease;
-    border-radius: 2px;
+    background: linear-gradient(180deg, var(--cyber-blue), var(--cyber-purple));
+    transition: height 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border-radius: 0 4px 4px 0;
 }
 
 .mobile-menu .mobile-link::after {
@@ -1393,18 +1499,17 @@ textarea:focus {
     right: 0;
     bottom: 0;
     background: linear-gradient(90deg, 
-        rgba(0, 240, 255, 0.05),
-        rgba(0, 240, 255, 0.1),
-        rgba(0, 240, 255, 0.05)
+        rgba(0, 240, 255, 0.08),
+        rgba(176, 38, 255, 0.08)
     );
     opacity: 0;
     transition: opacity 0.3s ease;
-    border-radius: 8px;
+    border-radius: 12px;
     z-index: -1;
 }
 
 .mobile-menu .mobile-link:hover::before {
-    height: 70%;
+    height: 80%;
 }
 
 .mobile-menu .mobile-link:hover::after {
@@ -1413,9 +1518,37 @@ textarea:focus {
 
 .mobile-menu .mobile-link:hover {
     color: var(--text-bright);
-    text-shadow: 0 0 10px var(--cyber-blue);
-    transform: translateX(10px);
-    border-left: 2px solid var(--cyber-blue);
+    text-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+    transform: translateX(8px);
+    background: rgba(0, 240, 255, 0.05);
+    border-left: 1px solid rgba(0, 240, 255, 0.4);
+}
+
+.mobile-menu .mobile-link:active {
+    transform: translateX(6px) scale(0.98);
+}
+
+/* Social Icons in Mobile Menu */
+.mobile-menu > div:last-child {
+    padding: 2rem;
+    border-top: 1px solid rgba(0, 240, 255, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease 0.3s;
+}
+
+.mobile-menu.active > div:last-child {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mobile-menu > div:last-child a {
+    transition: all 0.3s ease;
+}
+
+.mobile-menu > div:last-child a:hover {
+    transform: translateY(-5px) scale(1.15);
+    text-shadow: 0 0 15px currentColor;
 }
 
 @media (min-width: 1920px) {
