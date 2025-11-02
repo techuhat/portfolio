@@ -419,6 +419,22 @@ const cyberdeckTerminal = {
     },
 
     handleInput(event) {
+        // ESC key ya Ctrl+C se exit
+        if (event.key === 'Escape' || (event.ctrlKey && event.key === 'c')) {
+            if (this.contactStep > 0) {
+                this.cancelContact();
+                this.input.value = '';
+                event.preventDefault();
+                return;
+            }
+            if (this.resumeStep > 0) {
+                this.cancelDownload();
+                this.input.value = '';
+                event.preventDefault();
+                return;
+            }
+        }
+
         if (event.key === 'Enter') {
             const value = this.input.value.trim();
             const promptLabel = this.prompt.textContent || '>';
@@ -594,6 +610,24 @@ const cyberdeckTerminal = {
         ]);
         
         this.resumeStep = 0;
+        this.prompt.textContent = '>';
+    },
+
+    cancelContact() {
+        const cancelBox = this.createBox('CONTACT FORM CANCELLED');
+        this.appendLines([
+            '',
+            `<span style="color: #ff3366;">${cancelBox[0]}</span>`,
+            `<span style="color: #ff3366;">${cancelBox[1]}</span>`,
+            `<span style="color: #ff3366;">${cancelBox[2]}</span>`,
+            '<span style="color: #ff8866;">Contact form aborted by user</span>',
+            '<span class="output-color">You can restart by typing `contact` again</span>',
+            '<span style="color: #00f7ff;">Or email directly at: ablogumar@gmail.com</span>',
+            ''
+        ]);
+        
+        this.contactStep = 0;
+        this.contactData = {};
         this.prompt.textContent = '>';
     },
 
